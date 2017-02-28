@@ -18,4 +18,15 @@
         android:textSize="60sp"
         android:gravity="center"
         android:id="@+id/logo"/>
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="52dp"
+        android:textColor="@drawable/button_text_color"
+        android:background="@drawable/custom_button"/>
+
 </RelativeLayout>
