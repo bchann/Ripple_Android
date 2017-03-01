@@ -12,18 +12,19 @@ import android.view.View;
 
 public class PasscodeActivity extends AppCompatActivity {
     int passcode = 1234;
+    static final Party party = new Party();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passcode);
 
-        Party party = new Party();
         passcode = party.getPasscode();
     }
 
     public void enterParty(View view) {
-
+        Intent intent = new Intent(PasscodeActivity.this, PlaylistActivity.class);
+        startActivity(intent);
     }
 
     public void sendSMS(View view) {

@@ -21,7 +21,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".SpotifyAuthActivity" />
-        <activity android:name=".PasscodeActivity"></activity>
+        <activity android:name=".PasscodeActivity" />
+        <activity
+            android:name=".PlaylistActivity"
+            android:label="@string/title_activity_playlist"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
