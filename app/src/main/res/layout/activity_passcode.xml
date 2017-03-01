@@ -19,36 +19,18 @@
         android:gravity="center"
         android:id="@+id/logo"/>
 
-    <TextView
-        android:text="1234"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="60sp"
-        android:id="@+id/textView3"
-        android:layout_marginTop="27dp"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="Your Passcode is:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/logo"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:text="Enter Party"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@drawable/button_text_color"
         android:background="@drawable/custom_button"
-        android:id="@+id/button3"
-        android:layout_above="@+id/button2"
+        android:id="@+id/enterButton"
+        android:layout_above="@+id/inviteButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="30dp"
+        android:onClick="enterParty"/>
 
     <Button
         android:text="Invite Friends"
@@ -57,8 +39,30 @@
         android:layout_marginBottom="30dp"
         android:textColor="@drawable/button_text_color"
         android:background="@drawable/custom_button"
-        android:id="@+id/button2"
+        android:id="@+id/inviteButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="sendSMS"/>
+
+    <TextView
+        android:text="Your Passcode is:"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_marginBottom="50dp"
+        android:layout_above="@+id/passcodeText"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="1234"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:textSize="60sp"
+        android:gravity="center"
+        android:id="@+id/passcodeText"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/passcode_back"/>
 </RelativeLayout>

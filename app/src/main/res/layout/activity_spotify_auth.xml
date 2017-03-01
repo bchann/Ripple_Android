@@ -20,7 +20,7 @@
         android:id="@+id/logo"/>
 
     <TextView
-        android:text="Logged in as: "
+        android:text="Logged in as: ADD SPOTIFY STUFF PLZ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
