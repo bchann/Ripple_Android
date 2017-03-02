@@ -19,6 +19,11 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+/**
+ * Created by Brian Chan on 2/27/2017.
+ * This class very WIP. Don't refactor yet.
+ */
+
 public class PlaylistActivity extends AppCompatActivity {
 
     /**
@@ -90,6 +95,27 @@ public class PlaylistActivity extends AppCompatActivity {
     }
 
     /**
+     * Example on how to create a new fragment for the new tabs.
+     */
+    public static class PlaylistFragment extends Fragment {
+        public PlaylistFragment() {
+        }
+
+        public static PlaylistFragment newInstance() {
+            PlaylistFragment fragment = new PlaylistFragment();
+            return fragment;
+        }
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_history, container, false);
+            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            textView.setText("test");
+            return rootView;
+        }
+    }
+
+    /**
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
@@ -134,10 +160,18 @@ public class PlaylistActivity extends AppCompatActivity {
             super(fm);
         }
 
+        /**
+         * How to add fragments to tabs.
+         * @param position Tab location - 1
+         * @return The fragment that fills the position.
+         */
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+            if (position == 2) {
+                return PlaylistFragment.newInstance();
+            }
             return PlaceholderFragment.newInstance(position + 1);
         }
 
