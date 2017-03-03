@@ -38,12 +38,15 @@ public class SongListAdapter extends ArrayAdapter {
         SongListItem songListItem = (SongListItem) getItem(position);
 
         /* Take the TextView from layout and set the city's name */
-        TextView txtName = (TextView) convertView.findViewById(R.id.cityName);
+        TextView txtName = (TextView) convertView.findViewById(R.id.songName);
         txtName.setText(songListItem.getName());
 
         /* Take the TextView from layout and set the city's wiki link */
-        TextView txtWiki = (TextView) convertView.findViewById(R.id.cityLinkWiki);
-        txtWiki.setText(songListItem.getSpotify_id());
+        TextView txtAuthor = (TextView) convertView.findViewById(R.id.authorName);
+        txtAuthor.setText(songListItem.getAuthor());
+
+        TextView txtAlbum = (TextView) convertView.findViewById(R.id.albumName);
+        txtAlbum.setText(songListItem.getAlbum());
 
         /* Take the ImageView from layout and set the city's image */
         ImageView imageCity = (ImageView) convertView.findViewById(R.id.ImageCity);
@@ -51,6 +54,7 @@ public class SongListAdapter extends ArrayAdapter {
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         Drawable image = context.getResources().getDrawable(imageResource);
         imageCity.setImageDrawable(image);
+
         return convertView;
     }
 }

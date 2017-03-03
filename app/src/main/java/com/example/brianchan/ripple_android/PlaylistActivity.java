@@ -119,9 +119,9 @@ public class PlaylistActivity extends AppCompatActivity {
             Context ctx = getActivity();
 
             List songList= new ArrayList();
-            songList.add(new SongListItem("London","http://en.wikipedia.org/wiki/London","geazytemp"));
-            songList.add(new SongListItem("Rome","http://en.wikipedia.org/wiki/Rome","geazytemp"));
-            songList.add(new SongListItem("Paris","http://en.wikipedia.org/wiki/Paris","geazytemp"));
+            songList.add(new SongListItem("Me, Myself & I","G-Eazy","geazytemp", "When It's Dark Out"));
+            songList.add(new SongListItem("Some Kind of Drug","G-Eazy","geazytemp", "When It's Dark Out"));
+            songList.add(new SongListItem("Intro","G-Eazy","geazytemp", "When It's Dark Out"));
 
             ListView listView = (ListView) rootView.findViewById(R.id.historyList);
             listView.setAdapter(new SongListAdapter(ctx, R.layout.song_view, songList));

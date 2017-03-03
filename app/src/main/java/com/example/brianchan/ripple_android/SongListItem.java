@@ -6,13 +6,15 @@ package com.example.brianchan.ripple_android;
 
 public class SongListItem {
     private String name;
-    private String spotify_id;
+    private String author;
     private String image;
+    private String album;
 
-    public SongListItem(String name, String spotify_id, String image) {
+    public SongListItem(String name, String author, String image, String album) {
         this.name = name;
-        this.spotify_id = spotify_id;
+        this.author = author;
         this.image = image;
+        this.album = album;
     }
 
     public String getName() {
@@ -23,12 +25,12 @@ public class SongListItem {
         this.name = name;
     }
 
-    public String getSpotify_id() {
-        return spotify_id;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setSpotify_id(String spotify_id) {
-        this.spotify_id = spotify_id;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getImage() {
@@ -37,5 +39,13 @@ public class SongListItem {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
     }
 }
