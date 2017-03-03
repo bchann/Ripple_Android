@@ -22,7 +22,7 @@ public class Party {
     private String spotifyAuth = "tempSpotifyAuthKey";
     private String username = "tempUsername";
     private static final int passcodeLength = 4;
-    private List<Song> history_list, request_list, playlist;
+    private List<SongDB> history_list, request_list, playlist;
 
     /**
      * Creates a new party in Firebase and links it with songlists, userlists, and users.
@@ -54,8 +54,8 @@ public class Party {
         DatabaseReference djRef = database.getReference("userlists");
 
         //Set up the three song lists
-        List<Song> songs = new LinkedList<>();
-        songs.add(new Song("null", "null", "null"));
+        List<SongDB> songs = new LinkedList<>();
+        songs.add(new SongDB("null", "null", "null"));
         history_id = songsRef.push().getKey();
         songsRef.child(history_id).child("songs").setValue(songs);
         songsRef.child(history_id).child("party_id").setValue(roomid);
@@ -107,9 +107,9 @@ public class Party {
 }
 
 /**
- * A Song in a song list.
+ * A SongDB in a song list.
  */
-class Song {
+class SongDB {
     public String song_name; //Name of the song
     public String song_id; //Spotify id of the song
     public String requester; //Person who requested the song
@@ -120,7 +120,7 @@ class Song {
      * @param song_id Spotify id of the song
      * @param requester Person who requested the song
      */
-    public Song(String song_name, String song_id, String requester) {
+    public SongDB(String song_name, String song_id, String requester) {
         this.song_name = song_name;
         this.song_id = song_id;
         this.requester = requester;

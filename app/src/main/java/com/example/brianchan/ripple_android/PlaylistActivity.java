@@ -1,5 +1,6 @@
 package com.example.brianchan.ripple_android;
 
+import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,7 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Brian Chan on 2/27/2017.
@@ -97,20 +103,29 @@ public class PlaylistActivity extends AppCompatActivity {
     /**
      * Example on how to create a new fragment for the new tabs.
      */
-    public static class PlaylistFragment extends Fragment {
-        public PlaylistFragment() {
+    public static class SonglistFragment extends Fragment {
+        public SonglistFragment() {
         }
 
-        public static PlaylistFragment newInstance() {
-            PlaylistFragment fragment = new PlaylistFragment();
+        public static SonglistFragment newInstance() {
+            SonglistFragment fragment = new SonglistFragment();
             return fragment;
         }
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_history, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText("test");
+            View rootView = inflater.inflate(R.layout.fragment_songlist, container, false);
+
+            Context ctx = getActivity();
+
+            List songList= new ArrayList();
+            songList.add(new SongListItem("London","http://en.wikipedia.org/wiki/London","geazytemp"));
+            songList.add(new SongListItem("Rome","http://en.wikipedia.org/wiki/Rome","geazytemp"));
+            songList.add(new SongListItem("Paris","http://en.wikipedia.org/wiki/Paris","geazytemp"));
+
+            ListView listView = (ListView) rootView.findViewById(R.id.historyList);
+            listView.setAdapter(new SongListAdapter(ctx, R.layout.song_view, songList));
+
             return rootView;
         }
     }
@@ -170,7 +185,7 @@ public class PlaylistActivity extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             if (position == 2) {
-                return PlaylistFragment.newInstance();
+                return SonglistFragment.newInstance();
             }
             return PlaceholderFragment.newInstance(position + 1);
         }
