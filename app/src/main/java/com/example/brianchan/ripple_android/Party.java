@@ -73,7 +73,7 @@ public class Party {
 
         //Set up user list with an initial user as the dj
         List<User> users = new LinkedList<>();
-        users.add(new User(spotifyAuth, username, "dj"));
+        users.add(new User("userid", "dj"));
         user_list_id = djRef.push().getKey();
         djRef.child(user_list_id).child("users").setValue(users);
         djRef.child(user_list_id).child("party_id").setValue(roomid);
@@ -131,13 +131,11 @@ class SongDB {
  * A User in a user list.
  */
 class User {
-    public String spotify_key;
-    public String username;
+    public String userid;
     public String type;
 
-    public User(String spotify_key, String username, String type) {
-        this.spotify_key = spotify_key;
-        this.username = username;
+    public User(String userid, String type) {
+        this.userid = userid;
         this.type = type;
     }
 }

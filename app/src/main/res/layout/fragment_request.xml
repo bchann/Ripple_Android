@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/songRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="25sp"
+        android:text="Song Name" />
+
+    <ImageView
+        android:id="@+id/albumArt"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/geazytemp"
+        android:layout_below="@+id/songRequest"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/authorRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Author"
+        android:layout_below="@+id/albumArt"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/albumRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Album"
+        android:layout_below="@+id/authorRequest"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/rejectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/albumRequest"
+        android:layout_toLeftOf="@+id/albumArt"
+        android:layout_toStartOf="@+id/albumArt"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_delete" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/acceptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rejectButton"
+        android:layout_toEndOf="@+id/albumArt"
+        android:layout_toRightOf="@+id/albumArt"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+</RelativeLayout>

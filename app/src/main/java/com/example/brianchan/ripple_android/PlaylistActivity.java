@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -22,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -118,7 +120,7 @@ public class PlaylistActivity extends AppCompatActivity {
 
             Context ctx = getActivity();
 
-            List songList= new ArrayList();
+            ArrayList<SongListItem> songList= new ArrayList();
             songList.add(new SongListItem("Me, Myself & I","G-Eazy","geazytemp", "When It's Dark Out"));
             songList.add(new SongListItem("Some Kind of Drug","G-Eazy","geazytemp", "When It's Dark Out"));
             songList.add(new SongListItem("Intro","G-Eazy","geazytemp", "When It's Dark Out"));
@@ -127,6 +129,67 @@ public class PlaylistActivity extends AppCompatActivity {
             listView.setAdapter(new SongListAdapter(ctx, R.layout.song_view, songList));
 
             return rootView;
+        }
+    }
+
+    public static class RequestFragment extends Fragment {
+        private ArrayList<SongListItem> songList;
+        TextView songnameView, authorView, albumView;
+
+        public RequestFragment(ArrayList<SongListItem> songList) {
+            this.songList = songList;
+        }
+
+        public static RequestFragment newInstance(ArrayList<SongListItem> songList) {
+            RequestFragment fragment = new RequestFragment(songList);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_request, container, false);
+
+            //TODO: Firebase listener
+
+            songnameView = (TextView) rootView.findViewById(R.id.songRequest);
+            authorView = (TextView) rootView.findViewById(R.id.authorRequest);
+            albumView = (TextView) rootView.findViewById(R.id.albumRequest);
+
+            updateFields();
+
+            FloatingActionButton reject = (FloatingActionButton) rootView.findViewById(R.id.rejectButton);
+            reject.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    songList.remove(0);
+                    updateFields();
+                }
+            });
+
+            FloatingActionButton accept = (FloatingActionButton) rootView.findViewById(R.id.acceptButton);
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    songList.remove(0);
+                    updateFields();
+                }
+            });
+
+            return rootView;
+        }
+
+        private void updateFields() {
+            if (songList.isEmpty()) {
+                songnameView.setText("No More Requests :(");
+                authorView.setText("");
+                albumView.setText("");
+            }
+            else {
+                songnameView.setText(songList.get(0).getName());
+                authorView.setText(songList.get(0).getAuthor());
+                albumView.setText(songList.get(0).getAlbum());
+            }
         }
     }
 
@@ -159,8 +222,10 @@ public class PlaylistActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_playlist, container, false);
+
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            textView.setText("No More Songs");
+
             return rootView;
         }
     }
@@ -184,10 +249,16 @@ public class PlaylistActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            if (position == 2) {
+            if (position == 0 || position == 2) {
                 return SonglistFragment.newInstance();
             }
-            return PlaceholderFragment.newInstance(position + 1);
+
+            ArrayList<SongListItem> songList= new ArrayList();
+            songList.add(new SongListItem("Me, Myself & I","G-Eazy","geazytemp", "When It's Dark Out"));
+            songList.add(new SongListItem("Some Kind of Drug","G-Eazy","geazytemp", "When It's Dark Out"));
+            songList.add(new SongListItem("Intro","G-Eazy","geazytemp", "When It's Dark Out"));
+
+            return RequestFragment.newInstance(songList);
         }
 
         @Override
