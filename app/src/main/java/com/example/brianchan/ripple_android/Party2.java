@@ -1,6 +1,7 @@
 package com.example.brianchan.ripple_android;
 
-import com.rishi.spotifyplay.DJ;import com.rishi.spotifyplay.History; /**
+import com.example.brianchan.ripple_android.DJ;
+import com.example.brianchan.ripple_android.History; /**
  * Created by rishi on 3/3/17.
  */
 public class Party2 {

@@ -5,7 +5,10 @@ import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;import com.rishi.spotifyplay.Collaborator;import com.rishi.spotifyplay.Global;import com.rishi.spotifyplay.History;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.brianchan.ripple_android.Collaborator;
+import com.example.brianchan.ripple_android.Global;
+import com.example.brianchan.ripple_android.History;
 
 import org.json.JSONObject;
 

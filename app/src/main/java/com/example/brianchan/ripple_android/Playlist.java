@@ -9,7 +9,7 @@ import java.util.ListIterator;
 
 import com.spotify.sdk.android.player.Error;
 
-import static com.rishi.spotifyplay.Global.player;
+import static com.example.brianchan.ripple_android.Global.player;
 
 
 /**
