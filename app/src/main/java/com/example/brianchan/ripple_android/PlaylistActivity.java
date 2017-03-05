@@ -69,7 +69,7 @@ public class PlaylistActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Your FIREBASE passcode is " +
-                        PasscodeActivity.FIREBASE.getPasscode(), Snackbar.LENGTH_LONG)
+                        PasscodeActivity.PARTY.getPasscode(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -148,7 +148,7 @@ public class PlaylistActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_request, container, false);
 
-            //TODO: Firebase listener
+            //TODO: Firebase listener for whichever song list
 
             songnameView = (TextView) rootView.findViewById(R.id.songRequest);
             authorView = (TextView) rootView.findViewById(R.id.authorRequest);
