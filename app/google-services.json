@@ -59,6 +59,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "943187219708-kcc5fhbqe9i6mkch8dfuo9fp0hiecm0c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.brianchan.ripple_android",
+            "certificate_hash": "61cd0c61e757e69be8709ea3b98303373ad26532"
+          }
+        },
+        {
           "client_id": "943187219708-7jk8dsvrkrc5o1dqf8mqr32ib5mmm959.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
