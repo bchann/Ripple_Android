@@ -55,27 +55,24 @@ public class Firebase {
         DatabaseReference songsRef = database.getReference("songlists");
         DatabaseReference djRef = database.getReference("userlists");
 
-        //Set up the three song lists
-        List<SongDB> songs = new LinkedList<>();
-        songs.add(new SongDB("null", "null", "null"));
         history_id = songsRef.push().getKey();
-        songsRef.child(history_id).child("songs").setValue(songs);
+        //songsRef.child(history_id).child("songs").setValue(songs);
         songsRef.child(history_id).child("party_id").setValue(roomid);
         songsRef.child(history_id).child("list_type").setValue("history");
 
         request_list_id = songsRef.push().getKey();
-        songsRef.child(request_list_id).child("songs").setValue(songs);
+        //songsRef.child(request_list_id).child("songs").setValue(songs);
         songsRef.child(request_list_id).child("party_id").setValue(roomid);
         songsRef.child(request_list_id).child("list_type").setValue("request");
 
         playlist_id = songsRef.push().getKey();
-        songsRef.child(playlist_id).child("songs").setValue(songs);
+        //songsRef.child(playlist_id).child("songs").setValue(songs);
         songsRef.child(playlist_id).child("party_id").setValue(roomid);
         songsRef.child(playlist_id).child("list_type").setValue("playlist");
 
         //Set up user list with an initial user as the dj
-        List<User> users = new LinkedList<>();
-        users.add(new User("userid", "dj"));
+        List<DJ> users = new LinkedList<>();
+        users.add(new DJ());
         user_list_id = djRef.push().getKey();
         djRef.child(user_list_id).child("users").setValue(users);
         djRef.child(user_list_id).child("party_id").setValue(roomid);

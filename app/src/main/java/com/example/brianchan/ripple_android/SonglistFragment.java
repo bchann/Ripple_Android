@@ -1,8 +1,8 @@
 package com.example.brianchan.ripple_android;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +20,11 @@ public class SonglistFragment extends Fragment {
 
     private ArrayList<Song> songList;
 
-    public SonglistFragment(ArrayList<Song> songList) {
-        this.songList = songList;
+    public SonglistFragment() {
     }
 
-    public static SonglistFragment newInstance(ArrayList<Song> songList) {
-        SonglistFragment fragment = new SonglistFragment(songList);
-        return fragment;
+    public static SonglistFragment newInstance() {
+        return new SonglistFragment();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

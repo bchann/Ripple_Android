@@ -1,8 +1,9 @@
 package com.example.brianchan.ripple_android;
 
-import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +19,11 @@ public class RequestsFragment extends Fragment {
     TextView songnameView, authorView, albumView;
     private Requests requests;
 
-    private RequestsFragment(Requests requests) {
-        this.requests = requests;
+    public RequestsFragment() {
     }
 
-    public static RequestsFragment newInstance(Requests requests) {
-        RequestsFragment fragment = new RequestsFragment(requests);
-        return fragment;
+    public static RequestsFragment newInstance() {
+        return new RequestsFragment();
     }
 
     @Override

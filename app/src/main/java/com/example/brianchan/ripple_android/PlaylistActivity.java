@@ -1,5 +1,6 @@
 package com.example.brianchan.ripple_android;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;

@@ -6,14 +6,19 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONObject;
+
+import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
 /**
  * Created by rishi on 2/26/17.
  */
 
 public class Song {
+    private static final String VALID = "valid";
     private static final String REQUESTED = "requested";
     private static final String ACCEPTED = "accepted";
     private static final String REJECTED = "rejected";
@@ -21,8 +26,12 @@ public class Song {
     private static final String PAUSED = "paused";
     private static final String SKIPPED = "skipped";
     private static final String FINISHED_PLAYING = "finished playing";
+    private static final String CHILD = "songs";
 
-    private String songId;
+    public String songId;
+    public String requester;
+    public String status = VALID;
+
     private String title;
     private String uri;
     private long durationMs;
@@ -36,6 +45,9 @@ public class Song {
     private Collaborator collaborator;
 
     private JsonObjectRequest jsonRequest;
+
+    private final FirebaseDatabase database = getInstance();
+    DatabaseReference songlistsRef = database.getReference("songlists");
 
     public Song(String songId, Party party, Collaborator collaborator) {
         this.songId = songId;
@@ -102,30 +114,36 @@ public class Song {
     public void accept() {
         playlist.enqueue(this);
         requests.pop();
-        //TODO update playlist by adding song
-        //TODO update requests by removing request
-        //TODO update status to ACCEPTED
+        status = ACCEPTED;
+
+        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
+        songlistsRef.child(CHILD).child(Party.request_list_id).setValue(requests);
     }
 
     public void reject(){
         requests.pop();
-        //TODO update requests by removing request
-        //TODO update status to REJECTED
+        status = REJECTED;
+
+        songlistsRef.child(CHILD).child(Party.request_list_id).setValue(requests);
     }
 
     public void markFinishedPlaying() {
         history.append(this);
-        //TODO update playlist by removing song
-        //TODO update history by adding song
-        //TODO update status to FINISHED_PLAYING
+        playlist.dequeue();
+        status = FINISHED_PLAYING;
+
+        songlistsRef.child(CHILD).child(Party.history_id).setValue(history);
+        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
     }
 
     public void markPlaying() {
-        //TODO update status on firebase to PLAYING
+        status = PLAYING;
+        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
     }
 
     public void markPaused() {
-        //TODO update status on firebase to PAUSED
+        status = PAUSED;
+        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
     }
 
 }

@@ -30,12 +30,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
         if (position == 0 || position == 2) {
-            return PlaylistActivity.SonglistFragment.newInstance();
+            return SonglistFragment.newInstance();
         }
 
         ArrayList<Song> songList= new ArrayList();
 
-        return RequestsFragment.newInstance(songList);
+        return RequestsFragment.newInstance();
     }
 
     @Override

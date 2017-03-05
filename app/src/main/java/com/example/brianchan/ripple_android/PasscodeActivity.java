@@ -18,7 +18,6 @@ public class PasscodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passcode);
         presenter = new PasscodePresenter(this);
-
     }
 
     public void enterParty(View view) {
