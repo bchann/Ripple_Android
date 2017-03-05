@@ -11,20 +11,16 @@ import android.view.View;
  * Created by Brian Chan on 2/28/2017.
  */
 
-public class SpotifyAuthActivity extends AppCompatActivity {
-    public static final String PREFERENCES = "MyPrefs";
-    SharedPreferences preferences;
+public class StartPartyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spotify_auth);
-
-        preferences = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
+        setContentView(R.layout.activity_start_party);
     }
 
     public void startParty(View view) {
-        Intent intent = new Intent(SpotifyAuthActivity.this, PasscodeActivity.class);
+        Intent intent = new Intent(StartPartyActivity.this, PasscodeActivity.class);
         startActivity(intent);
     }
 }

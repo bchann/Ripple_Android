@@ -9,11 +9,11 @@ import java.util.Deque;
 
 public class Requests {
     private Deque<Song> requests;
-    private Party2 party2;
+    private Party party;
 
-    public Requests(Party2 party2) {
+    public Requests(Party party) {
         this.requests = new ArrayDeque<>();
-        this.party2 = party2;
+        this.party = party;
     }
 
     public Song pop() {

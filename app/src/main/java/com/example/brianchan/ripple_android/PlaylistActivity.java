@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -23,9 +22,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Brian Chan on 2/27/2017.
@@ -71,8 +67,8 @@ public class PlaylistActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Your party passcode is " +
-                        PasscodeActivity.party.getPasscode(), Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Your FIREBASE passcode is " +
+                        PasscodeActivity.FIREBASE.getPasscode(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

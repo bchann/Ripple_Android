@@ -19,16 +19,16 @@ import static com.example.brianchan.ripple_android.Global.player;
 public class Playlist {
     private ArrayList<Song> songList;
 
-    private Party2 party2;
+    private Party party;
 
     private PlaylistThread nextSongThread;
     private boolean firstTime;
 
     Player.OperationCallback op;
 
-    public Playlist(Party2 party2){
+    public Playlist(Party party){
 
-        this.party2 = party2;
+        this.party = party;
         firstTime = true;
 
         op = new Player.OperationCallback() {

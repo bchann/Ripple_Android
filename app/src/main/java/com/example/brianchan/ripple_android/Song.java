@@ -6,9 +6,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.brianchan.ripple_android.Collaborator;
-import com.example.brianchan.ripple_android.Global;
-import com.example.brianchan.ripple_android.History;
 
 import org.json.JSONObject;
 
@@ -17,13 +14,13 @@ import org.json.JSONObject;
  */
 
 public class Song {
-    public static final String REQUESTED = "requested";
-    public static final String ACCEPTED = "accepted";
-    public static final String REJECTED = "rejected";
-    public static final String PLAYING = "playing";
-    public static final String PAUSED = "paused";
-    public static final String SKIPPED = "skipped";
-    public static final String FINISHED_PLAYING = "finished playing";
+    private static final String REQUESTED = "requested";
+    private static final String ACCEPTED = "accepted";
+    private static final String REJECTED = "rejected";
+    private static final String PLAYING = "playing";
+    private static final String PAUSED = "paused";
+    private static final String SKIPPED = "skipped";
+    private static final String FINISHED_PLAYING = "finished playing";
 
     private String songId;
     private String title;
@@ -32,17 +29,17 @@ public class Song {
     private History history;
     private Playlist playlist;
     private Requests requests;
-    private Party2 party2;
+    private Party party;
     private Collaborator collaborator;
 
     private JsonObjectRequest jsonRequest;
 
-    public Song(String songId, Party2 party2, Collaborator collaborator) {
+    public Song(String songId, Party party, Collaborator collaborator) {
         this.songId = songId;
-        this.party2 = party2;
-        this.playlist = party2.getPlaylist();
-        this.requests = party2.getRequests();
-        this.history = party2.getHistory();
+        this.party = party;
+        this.playlist = party.getPlaylist();
+        this.requests = party.getRequests();
+        this.history = party.getHistory();
         this.collaborator = collaborator;
 
         getData();
