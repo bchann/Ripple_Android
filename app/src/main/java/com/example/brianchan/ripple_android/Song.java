@@ -29,7 +29,6 @@ public class Song {
     private String title;
     private String uri;
     private long durationMs;
-    private String status;
     private History history;
     private Playlist playlist;
     private Requests requests;
