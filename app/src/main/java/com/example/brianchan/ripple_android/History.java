@@ -9,10 +9,10 @@ import java.util.ListIterator;
 
 public class History {
     private ArrayList<Song> history;
-    private Party2 party2;
+    private Party party;
 
-    public History(Party2 party2) {
-        this.party2 = party2;
+    public History(Party party) {
+        this.party = party;
         this.history = new ArrayList<Song>();
 
         // TODO: pull history from Firebase and load into song listby calling append

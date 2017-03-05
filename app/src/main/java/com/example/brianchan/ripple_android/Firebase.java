@@ -1,7 +1,5 @@
 package com.example.brianchan.ripple_android;
 
-import com.example.brianchan.ripple_android.DJ;
-import com.example.brianchan.ripple_android.History;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -9,19 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by rishi on 3/3/17.
+ * Created by Brian Chan on 2/5/2017.
  */
-public class Party {
-    private Requests requests;
-    private Playlist pl;
-    private History history;
 
-    private DJ dj;
-
-    private int id;
-    //private int passcode;
-
-    //temp
+public class Firebase {
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference partyRef = database.getReference("parties");
     private int roomid;
@@ -35,10 +24,10 @@ public class Party {
     private static final int passcodeLength = 4;
     private List<SongDB> history_list, request_list, playlist;
 
-    public Party() {
-
-        // TODO: create FIREBASE on firebase, save party_id to this.id
-
+    /**
+     * Creates a new FIREBASE in Firebase and links it with songlists, userlists, and users.
+     */
+    Firebase() {
         /* Generate random unique passcode */
         /*while (!valid) {
             passcode = passcodeGen();
@@ -96,50 +85,57 @@ public class Party {
         roomRef.child("user_list_id").setValue(user_list_id);
         roomRef.child("passcode").setValue(this.passcode);
         roomRef.child("requests_paused").setValue(requests_paused);
-
-        changePasscode();
-
-        dj = new DJ();
-
-        requests = new Requests(this);
-        pl = new Playlist(this);
-        history = new History(this);
     }
 
-    private void startParty() {
-        // TODO: generate partyid, push to firebase
+    /**
+     * Generates a random unique 4-digit integer passcode for the room.
+     * @return Random unique 4-digit integer passcode.
+     */
+    private int passcodeGen() {
+        String passcode = "";
+
+        for (int i = 0; i < passcodeLength; i++) {
+            int randint = (int) (Math.random() * 9);
+            passcode += randint;
+        }
+        return Integer.parseInt(passcode);
     }
 
-    public int getPasscode() {
+    public int getPasscode(){
         return passcode;
     }
+}
 
-    public void changePasscode() {
-        // TODO: generate unique passcode
-        // TODO: push unique passcode to Firebase
+/**
+ * A SongDB in a song list.
+ */
+class SongDB {
+    public String song_name; //Name of the song
+    public String song_id; //Spotify id of the song
+    public String requester; //Person who requested the song
+
+    /**
+     * Constructor which just assigns the song attributes.
+     * @param song_name Name of the song
+     * @param song_id Spotify id of the song
+     * @param requester Person who requested the song
+     */
+    public SongDB(String song_name, String song_id, String requester) {
+        this.song_name = song_name;
+        this.song_id = song_id;
+        this.requester = requester;
     }
+}
 
-    public void roll() {
-        // TODO: delete FIREBASE off firebase
-    }
+/**
+ * A User in a user list.
+ */
+class User {
+    public String userid;
+    public String type;
 
-    public int getId() {
-        return id;
-    }
-
-    public String getDJName() {
-        return dj.getUsername();
-    }
-
-    public History getHistory() {
-        return history;
-    }
-
-    public Playlist getPlaylist() {
-        return pl;
-    }
-
-    public Requests getRequests() {
-        return requests;
+    public User(String userid, String type) {
+        this.userid = userid;
+        this.type = type;
     }
 }
