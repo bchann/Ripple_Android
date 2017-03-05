@@ -35,22 +35,22 @@ public class SongListAdapter extends ArrayAdapter {
         convertView = (RelativeLayout) inflater.inflate( resource, null );
 
         /* Extract the city's object to show */
-        SongListItem songListItem = (SongListItem) getItem(position);
+        Song songListItem = (Song) getItem(position);
 
         /* Take the TextView from layout and set the city's name */
         TextView txtName = (TextView) convertView.findViewById(R.id.songName);
-        txtName.setText(songListItem.getName());
+        txtName.setText(songListItem.getTitle());
 
         /* Take the TextView from layout and set the city's wiki link */
         TextView txtAuthor = (TextView) convertView.findViewById(R.id.authorName);
-        txtAuthor.setText(songListItem.getAuthor());
+        txtAuthor.setText(songListItem.getArtist());
 
         TextView txtAlbum = (TextView) convertView.findViewById(R.id.albumName);
         txtAlbum.setText(songListItem.getAlbum());
 
         /* Take the ImageView from layout and set the city's image */
         ImageView imageCity = (ImageView) convertView.findViewById(R.id.ImageCity);
-        String uri = "drawable/" + songListItem.getImage();
+        String uri = "drawable/" + songListItem.getArtUri();
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         Drawable image = context.getResources().getDrawable(imageResource);
         imageCity.setImageDrawable(image);

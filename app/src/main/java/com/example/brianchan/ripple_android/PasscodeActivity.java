@@ -11,26 +11,21 @@ import android.view.View;
  */
 
 public class PasscodeActivity extends AppCompatActivity {
-    int passcode = 1234;
-    static final Firebase FIREBASE = new Firebase();
+    PasscodePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passcode);
+        presenter = new PasscodePresenter(this);
 
-        passcode = FIREBASE.getPasscode();
     }
 
     public void enterParty(View view) {
-        Intent intent = new Intent(PasscodeActivity.this, PlaylistActivity.class);
-        startActivity(intent);
+        presenter.enterParty();
     }
 
     public void sendSMS(View view) {
-        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-        sendIntent.setData(Uri.parse("sms:"));
-        sendIntent.putExtra("sms_body", "My Ripple FIREBASE passcode is " + passcode + " !");
-        startActivity(sendIntent);
+        presenter.sendSMS();
     }
 }

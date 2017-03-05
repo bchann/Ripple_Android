@@ -26,6 +26,9 @@ public class Song {
     private String title;
     private String uri;
     private long durationMs;
+    private String album;
+    private String artist;
+    private String artUri;
     private History history;
     private Playlist playlist;
     private Requests requests;
@@ -57,6 +60,7 @@ public class Song {
                             title = response.getString("name");
                             uri = response.getString("uri");
                             durationMs = response.getLong("duration_ms");
+                            //TODO GET ALBUM, ARTIST, AND ALBUM ART
 
                         } catch (Exception e) {
                             Log.e("error", "error parsing data");
@@ -88,6 +92,12 @@ public class Song {
     public long getDuration() {
         return durationMs;
     }
+
+    public String getAlbum() { return album; }
+
+    public String getArtist(){ return artist;}
+
+    public String getArtUri(){ return artUri;}
 
     public void accept() {
         playlist.enqueue(this);

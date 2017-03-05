@@ -125,4 +125,6 @@ public class Playlist {
     }
 
     public Song getCurrSong(){ return songList.get(0);}
+
+    public ArrayList<Song> getSongList(){ return songList; }
 }
