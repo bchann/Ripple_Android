@@ -76,9 +76,7 @@ public class Playlist {
                 songs.get(0).markPlaying();
                 notify();
             }
-
         }
-
     }
 
     //plays the next song on our playlist

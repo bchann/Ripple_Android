@@ -12,14 +12,14 @@ import android.view.View;
 
 public class PasscodeActivity extends AppCompatActivity {
     int passcode = 1234;
-    static final Firebase FIREBASE = new Firebase();
+    static final Party PARTY = new Party();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passcode);
 
-        passcode = FIREBASE.getPasscode();
+        passcode = PARTY.getPasscode();
     }
 
     public void enterParty(View view) {

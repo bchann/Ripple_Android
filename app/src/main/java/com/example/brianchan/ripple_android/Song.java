@@ -109,15 +109,15 @@ public class Song {
         requests.pop();
         status = ACCEPTED;
 
-        songlistsRef.child(CHILD).setValue(playlist);
-        songlistsRef.child(CHILD).setValue(requests);
+        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
+        songlistsRef.child(CHILD).child(Party.request_list_id).setValue(requests);
     }
 
     public void reject(){
         requests.pop();
         status = REJECTED;
 
-        songlistsRef.child(CHILD).setValue(requests);
+        songlistsRef.child(CHILD).child(Party.request_list_id).setValue(requests);
     }
 
     public void markFinishedPlaying() {
@@ -125,18 +125,18 @@ public class Song {
         playlist.dequeue();
         status = FINISHED_PLAYING;
 
-        songlistsRef.child(CHILD).setValue(history);
-        songlistsRef.child(CHILD).setValue(playlist);
+        songlistsRef.child(CHILD).child(Party.history_id).setValue(history);
+        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
     }
 
     public void markPlaying() {
         status = PLAYING;
-        songlistsRef.child(CHILD).setValue(playlist);
+        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
     }
 
     public void markPaused() {
         status = PAUSED;
-        songlistsRef.child(CHILD).setValue(playlist);
+        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
     }
 
 }
