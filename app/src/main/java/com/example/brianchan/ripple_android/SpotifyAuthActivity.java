@@ -14,7 +14,7 @@ public class SpotifyAuthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(activity_spotify_auth);
+        setContentView(R.layout.activity_spotify_auth);
     }
 
     public void startParty(View view) {
