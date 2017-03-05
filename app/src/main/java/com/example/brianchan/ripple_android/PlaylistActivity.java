@@ -1,5 +1,6 @@
 package com.example.brianchan.ripple_android;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -128,6 +129,7 @@ public class PlaylistActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ValidFragment")
     public static class RequestFragment extends Fragment {
         private ArrayList<SongListItem> songList;
         TextView songnameView, authorView, albumView;
@@ -199,8 +201,7 @@ public class PlaylistActivity extends AppCompatActivity {
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public PlaceholderFragment() {
-        }
+        public PlaceholderFragment() {}
 
         /**
          * Returns a new instance of this fragment for the given section

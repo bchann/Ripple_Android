@@ -6,6 +6,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONObject;
 
@@ -14,6 +16,7 @@ import org.json.JSONObject;
  */
 
 public class Song {
+    private static final String VALID = "valid";
     private static final String REQUESTED = "requested";
     private static final String ACCEPTED = "accepted";
     private static final String REJECTED = "rejected";
@@ -22,26 +25,31 @@ public class Song {
     private static final String SKIPPED = "skipped";
     private static final String FINISHED_PLAYING = "finished playing";
 
-    private String songId;
+    public String songId;
+    public String requester;
+    public String status = VALID;
+
     private String title;
     private String uri;
     private long durationMs;
-    private String status;
     private History history;
     private Playlist playlist;
     private Requests requests;
     private Party party;
     private Collaborator collaborator;
-
     private JsonObjectRequest jsonRequest;
 
     public Song(String songId, Party party, Collaborator collaborator) {
         this.songId = songId;
         this.party = party;
+
         this.playlist = party.getPlaylist();
         this.requests = party.getRequests();
         this.history = party.getHistory();
+
         this.collaborator = collaborator;
+
+        this.requester = collaborator.getId();
 
         getData();
     }
@@ -93,22 +101,24 @@ public class Song {
     public void accept() {
         playlist.enqueue(this);
         requests.pop();
-        //TODO update playlist by adding song
-        //TODO update requests by removing request
-        //TODO update status to ACCEPTED
+        status = ACCEPTED;
+
+        //TODO: push playlist + requests
     }
 
     public void reject(){
         requests.pop();
-        //TODO update requests by removing request
-        //TODO update status to REJECTED
+        status = REJECTED;
+
+        //TODO: push requests
     }
 
     public void markFinishedPlaying() {
         history.append(this);
-        //TODO update playlist by removing song
-        //TODO update history by adding song
-        //TODO update status to FINISHED_PLAYING
+        playlist.dequeue();
+        status = FINISHED_PLAYING;
+
+        //TODO: push hist + playlist
     }
 
     public void markPlaying() {

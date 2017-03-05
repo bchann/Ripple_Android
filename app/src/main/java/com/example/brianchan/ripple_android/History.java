@@ -8,12 +8,16 @@ import java.util.ListIterator;
  */
 
 public class History {
-    private ArrayList<Song> history;
+    public String list_type = "history";
+    public String party_id;
+    public ArrayList<Song> history;
+
     private Party party;
 
     public History(Party party) {
         this.party = party;
         this.history = new ArrayList<Song>();
+        this.party_id = party.getId();
 
         // TODO: pull history from Firebase and load into song listby calling append
     }

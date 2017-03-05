@@ -19,7 +19,7 @@
         android:layout_marginBottom="52dp"
         android:textColor="@drawable/button_text_color"
         android:background="@drawable/custom_button"
-        android:onClick="spotifyAuth"/>
+        android:onClick="connect"/>
 
     <com.example.brianchan.ripple_android.RippleFont
         android:layout_width="match_parent"
