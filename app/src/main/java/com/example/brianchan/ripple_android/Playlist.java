@@ -2,14 +2,11 @@ package com.example.brianchan.ripple_android;
 
 import android.util.Log;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.spotify.sdk.android.player.Error;
 import com.spotify.sdk.android.player.Player;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
-
-import com.spotify.sdk.android.player.Error;
 
 import static com.example.brianchan.ripple_android.Global.player;
 
@@ -50,13 +47,9 @@ public class Playlist {
     }
 
     public void enqueue(Song song) {
+        songs.add(song);
 
-        Song newSong = song;
-        songs.add(newSong);
-
-        String songName = newSong.getTitle();
-
-        // TODO: push song to playlist
+        String songName = song.getTitle();
     }
 
     public Song dequeue() {
@@ -65,7 +58,6 @@ public class Playlist {
 
     private void remove(Song song) {
         songs.remove(song);
-        //TODO  remove song from playlist
     }
 
     public void togglePlayPause(){

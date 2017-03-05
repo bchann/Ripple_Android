@@ -11,6 +11,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONObject;
 
+import static com.google.firebase.database.FirebaseDatabase.getInstance;
+
 /**
  * Created by rishi on 2/26/17.
  */
@@ -24,6 +26,7 @@ public class Song {
     private static final String PAUSED = "paused";
     private static final String SKIPPED = "skipped";
     private static final String FINISHED_PLAYING = "finished playing";
+    private static final String CHILD = "songs";
 
     public String songId;
     public String requester;
@@ -38,6 +41,9 @@ public class Song {
     private Party party;
     private Collaborator collaborator;
     private JsonObjectRequest jsonRequest;
+
+    private final FirebaseDatabase database = getInstance();
+    DatabaseReference songlistsRef = database.getReference("songlists");
 
     public Song(String songId, Party party, Collaborator collaborator) {
         this.songId = songId;
@@ -103,14 +109,15 @@ public class Song {
         requests.pop();
         status = ACCEPTED;
 
-        //TODO: push playlist + requests
+        songlistsRef.child(CHILD).setValue(playlist);
+        songlistsRef.child(CHILD).setValue(requests);
     }
 
     public void reject(){
         requests.pop();
         status = REJECTED;
 
-        //TODO: push requests
+        songlistsRef.child(CHILD).setValue(requests);
     }
 
     public void markFinishedPlaying() {
@@ -118,15 +125,18 @@ public class Song {
         playlist.dequeue();
         status = FINISHED_PLAYING;
 
-        //TODO: push hist + playlist
+        songlistsRef.child(CHILD).setValue(history);
+        songlistsRef.child(CHILD).setValue(playlist);
     }
 
     public void markPlaying() {
-        //TODO update status on firebase to PLAYING
+        status = PLAYING;
+        songlistsRef.child(CHILD).setValue(playlist);
     }
 
     public void markPaused() {
-        //TODO update status on firebase to PAUSED
+        status = PAUSED;
+        songlistsRef.child(CHILD).setValue(playlist);
     }
 
 }

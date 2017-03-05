@@ -6,6 +6,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.google.firebase.database.FirebaseDatabase.getInstance;
+
 /**
  * Created by rishi on 3/3/17.
  */
@@ -19,8 +21,7 @@ public class Party {
 
     //Access this to get all member variables
     public static Firebase firebase;
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference songlistRef;
+    private final FirebaseDatabase database = getInstance();
 
     Party() {
         dj = new DJ();
@@ -29,13 +30,16 @@ public class Party {
         playlist = new Playlist(this);
         history = new History(this);
 
-        startParty();
+        firebase = new Firebase();
+        passcode = firebase.getPasscode();
 
-        //TODO: add firebase listeners
-        songlistRef.child(Firebase.history_id).addValueEventListener(new ValueEventListener() {
+        DatabaseReference songlistRef = database.getReference("songlists");
+
+        //Song list listeners
+        songlistRef.child(Firebase.request_list_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                history = dataSnapshot.getValue(History.class);
+                requests = dataSnapshot.getValue(Requests.class);
             }
 
             @Override
@@ -56,10 +60,10 @@ public class Party {
             }
         });
 
-        songlistRef.child(Firebase.request_list_id).addValueEventListener(new ValueEventListener() {
+        songlistRef.child(Firebase.history_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                requests = dataSnapshot.getValue(Requests.class);
+                history = dataSnapshot.getValue(History.class);
             }
 
             @Override
@@ -67,14 +71,6 @@ public class Party {
                 System.err.println("The read failed: " + databaseError.getCode());
             }
         });
-    }
-
-    private void startParty() {
-        // TODO: generate partyid, push to firebase
-        //Delegate to Firebase() for now
-        firebase = new Firebase();
-
-        passcode = firebase.getPasscode();
     }
 
     public int getPasscode() {
@@ -88,7 +84,7 @@ public class Party {
 
     public void roll() {
         // TODO: delete FIREBASE off firebase
-        //Let's not roll rn
+        // Let's not roll rn
     }
 
     public String getId() {
