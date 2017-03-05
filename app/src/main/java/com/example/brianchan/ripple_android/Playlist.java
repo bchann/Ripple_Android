@@ -2,6 +2,8 @@ package com.example.brianchan.ripple_android;
 
 import android.util.Log;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.spotify.sdk.android.player.Player;
 
 import java.util.ArrayList;
@@ -17,18 +19,19 @@ import static com.example.brianchan.ripple_android.Global.player;
  */
 
 public class Playlist {
-    private ArrayList<Song> songList;
+    public String list_type = "playlist";
+    public String party_id;
+    public ArrayList<Song> songs;
 
     private Party party;
-
     private PlaylistThread nextSongThread;
     private boolean firstTime;
 
     Player.OperationCallback op;
 
-    public Playlist(Party party){
-
+    Playlist(Party party){
         this.party = party;
+        this.party_id = party.getId();
         firstTime = true;
 
         op = new Player.OperationCallback() {
@@ -43,28 +46,32 @@ public class Playlist {
             }
         };
 
-        songList = new ArrayList<Song>();
+        songs = new ArrayList<Song>();
     }
 
     public void enqueue(Song song) {
 
         Song newSong = song;
-        songList.add(newSong);
+        songs.add(newSong);
 
         String songName = newSong.getTitle();
 
         // TODO: push song to playlist
     }
 
+    public Song dequeue() {
+        return songs.remove(0);
+    }
+
     private void remove(Song song) {
-        songList.remove(song);
+        songs.remove(song);
         //TODO  remove song from playlist
     }
 
     public void togglePlayPause(){
         if(player.getPlaybackState().isPlaying){
             player.pause(op);
-            songList.get(0).markPaused();
+            songs.get(0).markPaused();
             try {
                 nextSongThread.wait();
             } catch (InterruptedException e) {
@@ -74,7 +81,7 @@ public class Playlist {
         else{
             if(player.getPlaybackState().positionMs < player.getMetadata().currentTrack.durationMs){
                 player.resume(op);
-                songList.get(0).markPlaying();
+                songs.get(0).markPlaying();
                 notify();
             }
 
@@ -84,7 +91,7 @@ public class Playlist {
 
     //plays the next song on our playlist
     public void playNextSong(){
-        Song currSong = songList.get(0);
+        Song currSong = songs.get(0);
         currSong.markFinishedPlaying();
 
         if(firstTime) {
@@ -96,8 +103,8 @@ public class Playlist {
         }
         else{
             remove(currSong);
-            if(songList.size() != 0) {
-                Song nextSong =  songList.get(0);
+            if(songs.size() != 0) {
+                Song nextSong =  songs.get(0);
                 nextSongThread = new PlaylistThread(nextSong.getDuration(), this);
                 player.playUri(op, nextSong.getUri(), 0, 0);
                 nextSongThread.start();
@@ -109,22 +116,20 @@ public class Playlist {
     //skips to next song
     public void skip(){
         nextSongThread.interrupt();
-        Song skippedSong = songList.get(0);
+        Song skippedSong = songs.get(0);
         remove(skippedSong);
         skippedSong.markFinishedPlaying();
     }
 
     public ArrayList<Song> reorder(int fromIndex, int toIndex){
-        Song toMove = songList.remove(fromIndex);
-        songList.add(toIndex, toMove);
-        return songList;
+        Song toMove = songs.remove(fromIndex);
+        songs.add(toIndex, toMove);
+        return songs;
     }
 
     public ListIterator<Song> listIterator(){
-        return songList.listIterator();
+        return songs.listIterator();
     }
 
-    public Song getCurrSong(){ return songList.get(0);}
-
-    public ArrayList<Song> getSongList(){ return songList; }
+    public Song getCurrSong(){ return songs.get(0);}
 }

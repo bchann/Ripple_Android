@@ -12,17 +12,17 @@ import java.util.List;
 
 public class Firebase {
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference partyRef = database.getReference("parties");
-    private int roomid;
-    private String history_id, request_list_id, playlist_id;
+    public static String roomid;
+    public static String history_id, request_list_id, playlist_id;
     public static String user_list_id;
-    private int passcode = 1234;
+    public static int passcode = 1234;
+    public static String spotifyAuth = "tempSpotifyAuthKey";
+    public static String username = "tempUsername";
+    public static List<SongDB> history_list, request_list, playlist;
+
     private boolean valid = false;
     private boolean requests_paused = false;
-    private String spotifyAuth = "tempSpotifyAuthKey";
-    private String username = "tempUsername";
-    private static final int passcodeLength = 4;
-    private List<SongDB> history_list, request_list, playlist;
+    private static final int PASSCODE_LENGTH = 4;
 
     /**
      * Creates a new FIREBASE in Firebase and links it with songlists, userlists, and users.
@@ -45,11 +45,13 @@ public class Firebase {
             });
         }*/
 
-        passcode = 1234; //Temp reassign
-        roomid = passcode;
+        passcode = 1234; //Temp passcode
 
         //Room references for the different database containers
-        DatabaseReference roomRef = partyRef.child("" + roomid);
+        DatabaseReference partyRef = database.getReference("parties");
+        roomid = partyRef.push().getKey();
+
+        DatabaseReference roomRef = partyRef.child(roomid);
         DatabaseReference songsRef = database.getReference("songlists");
         DatabaseReference djRef = database.getReference("userlists");
 
@@ -83,7 +85,7 @@ public class Firebase {
         roomRef.child("request_list_id").setValue(request_list_id);
         roomRef.child("playlist_id").setValue(playlist_id);
         roomRef.child("user_list_id").setValue(user_list_id);
-        roomRef.child("passcode").setValue(this.passcode);
+        roomRef.child("passcode").setValue(passcode);
         roomRef.child("requests_paused").setValue(requests_paused);
     }
 
@@ -94,7 +96,7 @@ public class Firebase {
     private int passcodeGen() {
         String passcode = "";
 
-        for (int i = 0; i < passcodeLength; i++) {
+        for (int i = 0; i < PASSCODE_LENGTH; i++) {
             int randint = (int) (Math.random() * 9);
             passcode += randint;
         }
@@ -113,6 +115,7 @@ class SongDB {
     public String song_name; //Name of the song
     public String song_id; //Spotify id of the song
     public String requester; //Person who requested the song
+    public String status = "valid";
 
     /**
      * Constructor which just assigns the song attributes.
