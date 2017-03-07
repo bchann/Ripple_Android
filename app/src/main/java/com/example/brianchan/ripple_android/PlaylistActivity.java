@@ -19,7 +19,6 @@ import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
 /**
  * Created by Brian Chan on 2/27/2017.
- * This class very WIP. Don't refactor yet.
  */
 
 public class PlaylistActivity extends AppCompatActivity {
