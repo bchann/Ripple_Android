@@ -3,34 +3,36 @@ package com.example.brianchan.ripple_android;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by rishi on 3/3/17.
  */
 
-public class Requests {
-    private List<Song> requests;
+public class Requests extends SongList{
     private Party party;
 
-    public Requests(Party party) {
-        this.requests = new ArrayList<>();
+    Requests() {}
+
+    Requests(Party party) {
+        super("requests", party.getId(), new LinkedList<Song>());
         this.party = party;
     }
 
     public Song pop() {
-        return requests.remove(0);
+        return songs.remove(0);
     }
 
     public void push(Song song) {
-        requests.add(song);
+        songs.add(song);
     }
 
     public boolean isEmpty() {
-        return requests.size() == 0;
+        return songs.size() == 0;
     }
 
     public Song peek() {
-        return requests.get(0);
+        return songs.get(0);
     }
 }

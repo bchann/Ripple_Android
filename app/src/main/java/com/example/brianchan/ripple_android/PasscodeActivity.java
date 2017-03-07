@@ -21,10 +21,10 @@ public class PasscodeActivity extends AppCompatActivity {
     }
 
     public void enterParty(View view) {
-        presenter.enterParty();
+        presenter.enterParty(view);
     }
 
     public void sendSMS(View view) {
-        presenter.sendSMS();
+        presenter.sendSMS(view);
     }
 }

@@ -9,12 +9,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static com.google.firebase.database.FirebaseDatabase.getInstance;
+
 /**
  * Created by Brian Chan on 2/27/2017.
  * This class very WIP. Don't refactor yet.
  */
 
 public class PlaylistActivity extends AppCompatActivity {
+    private final FirebaseDatabase database = getInstance();
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -22,7 +31,7 @@ public class PlaylistActivity extends AppCompatActivity {
      * {@link FragmentPagerAdapter} derivative, which will keep every
      * loaded fragment in memory.
      */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private TabsPagerAdapter mTabsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -38,13 +47,54 @@ public class PlaylistActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //TODO: ADD LISTENERS FOR 3 SONG LISTS
+        DatabaseReference songsRef = database.getReference("songlists");
+        //playlist
+        songsRef.child(Party.playlist_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+        //Requests
+        songsRef.child(Party.request_list_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Global.party.setRequests(dataSnapshot.getValue(Requests.class));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+        //History
+        songsRef.child(Party.history_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Global.party.setHistory(dataSnapshot.getValue(History.class));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mTabsPagerAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setAdapter(mTabsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);

@@ -1,27 +1,25 @@
 package com.example.brianchan.ripple_android;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ListIterator;
 
 /**
  * Created by rishi on 3/3/17.
  */
 
-public class History {
-    public String list_type = "history";
-    public String party_id;
-    public ArrayList<Song> history;
-
+public class History extends SongList{
     private Party party;
 
-    public History(Party party) {
+    History() {}
+
+    History(Party party) {
+        super("history", party.getId(), new LinkedList<Song>());
         this.party = party;
-        this.history = new ArrayList<Song>();
-        this.party_id = party.getId();
     }
 
     public void append(Song song) {
-        history.add(song);
+        songs.add(song);
     }
 
     public void export() {
@@ -29,6 +27,6 @@ public class History {
     }
 
     public ListIterator<Song> listIterator() {
-        return history.listIterator();
+        return songs.listIterator();
     }
 }

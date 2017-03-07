@@ -110,14 +110,14 @@ public class Firebase {
  */
 class SongDB {
     public String song_name; //Name of the song
-    public String song_id; //Spotify id of the song
+    public String song_id; //Spotify party_id of the song
     public String requester; //Person who requested the song
     public String status = "valid";
 
     /**
      * Constructor which just assigns the song attributes.
      * @param song_name Name of the song
-     * @param song_id Spotify id of the song
+     * @param song_id Spotify party_id of the song
      * @param requester Person who requested the song
      */
     public SongDB(String song_name, String song_id, String requester) {

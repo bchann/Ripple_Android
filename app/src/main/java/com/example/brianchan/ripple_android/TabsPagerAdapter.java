@@ -14,9 +14,9 @@ import java.util.ArrayList;
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class TabsPagerAdapter extends FragmentPagerAdapter {
 
-    public SectionsPagerAdapter(FragmentManager fm) {
+    public TabsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -29,13 +29,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        if (position == 0 || position == 2) {
-            return SonglistFragment.newInstance();
+        if (position == 0) {
+            return PlaylistFragment.newInstance();
+        }
+        if (position == 1) {
+            return RequestsFragment.newInstance();
         }
 
-        ArrayList<Song> songList= new ArrayList();
-
-        return RequestsFragment.newInstance();
+        return HistoryListFragment.newInstance();
     }
 
     @Override

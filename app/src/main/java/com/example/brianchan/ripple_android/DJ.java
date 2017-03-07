@@ -13,9 +13,7 @@ public class DJ {
     DJ() {
         // TODO: fetch username from Spotify, save in Firebase
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("userlists").child(Firebase.user_list_id).child("users");
-        ref.setValue(username);
+        username = "tempUsername";
     }
 
     public String getUsername() {

@@ -17,10 +17,9 @@ import java.util.ArrayList;
 
 public class RequestsFragment extends Fragment {
     TextView songnameView, authorView, albumView;
-    private Requests requests;
+    private Requests requests = new Requests(Global.party);
 
-    public RequestsFragment() {
-    }
+    public RequestsFragment() {}
 
     public static RequestsFragment newInstance() {
         return new RequestsFragment();

@@ -1,9 +1,15 @@
 package com.example.brianchan.ripple_android;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.util.Log;
 
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
@@ -14,6 +20,8 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
+import static com.google.firebase.database.FirebaseDatabase.getInstance;
+
 /**
  * Created by rishi on 2/26/17.
  */
@@ -21,7 +29,6 @@ import com.spotify.sdk.android.player.SpotifyPlayer;
 public class AuthPresenter {
 
     public static final int REQUEST_CODE = 1337;
-
     public static final String CLIENT_ID = "7bccf322d5644ad4905b43e7d0f61f7f";
     public static final String REDIRECT_URI = "abg110://callback";
 
@@ -63,8 +70,31 @@ public class AuthPresenter {
                         Global.player.addConnectionStateCallback(rip);
                         Global.player.addNotificationCallback(rip);
 
-                        Global.party = new Party();
-                        Playlist playlist = new Playlist(Global.party);
+                        //Redundant party check
+                        final FirebaseDatabase database = getInstance();
+                        DatabaseReference partyRef = database.getReference("parties");
+                        String party_id = "1234"; //TODO: IMPLEMENT LINKING SPOTIFY TO PARTYID
+
+                        partyRef.child(party_id).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot snapshot) {
+                                if (snapshot.exists()) {
+                                    Global.party = new Party(
+                                            snapshot.child("party_id").getValue(String.class),
+                                            snapshot.child("history_id").getValue(String.class),
+                                            snapshot.child("request_list_id").getValue(String.class),
+                                            snapshot.child("playlist_id").getValue(String.class),
+                                            snapshot.child("user_list_id").getValue(String.class),
+                                            snapshot.child("passcode").getValue(Integer.class));
+                                }
+                                else {
+                                    Global.party = new Party();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {}
+                        });
 
                         Intent intent = new Intent(activity, StartPartyActivity.class);
                         activity.startActivity(intent);

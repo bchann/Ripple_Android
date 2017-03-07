@@ -16,12 +16,12 @@ import java.util.List;
  * Created by Brian Chan on 3/3/2017.
  */
 
-public class SongListAdapter extends ArrayAdapter {
+public class SongListItemAdapter extends ArrayAdapter {
     private int resource;
     private LayoutInflater inflater;
     private Context context;
 
-    public SongListAdapter(Context ctx, int resourceId, List objects) {
+    public SongListItemAdapter(Context ctx, int resourceId, List objects) {
         super(ctx, resourceId, objects );
         resource = resourceId;
         inflater = LayoutInflater.from( ctx );

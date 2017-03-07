@@ -6,6 +6,8 @@ import com.spotify.sdk.android.player.Error;
 import com.spotify.sdk.android.player.Player;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 import static com.example.brianchan.ripple_android.Global.player;
@@ -15,20 +17,18 @@ import static com.example.brianchan.ripple_android.Global.player;
  * Created by Parikshit on 2/26/17.
  */
 
-public class Playlist {
-    public String list_type = "playlist";
-    public String party_id;
-    public ArrayList<Song> songs;
-
+public class Playlist extends SongList {
     private Party party;
     private PlaylistThread nextSongThread;
     private boolean firstTime;
 
     Player.OperationCallback op;
 
+    Playlist() {}
+
     Playlist(Party party){
+        super("playlist", party.getId(), new LinkedList<Song>());
         this.party = party;
-        this.party_id = party.getId();
         firstTime = true;
 
         op = new Player.OperationCallback() {
@@ -42,8 +42,6 @@ public class Playlist {
                 Log.d("Error", "Callback unsuccessful");
             }
         };
-
-        songs = new ArrayList<Song>();
     }
 
     public void enqueue(Song song) {
@@ -111,7 +109,7 @@ public class Playlist {
         skippedSong.markFinishedPlaying();
     }
 
-    public ArrayList<Song> reorder(int fromIndex, int toIndex){
+    public List<Song> reorder(int fromIndex, int toIndex){
         Song toMove = songs.remove(fromIndex);
         songs.add(toIndex, toMove);
         return songs;
