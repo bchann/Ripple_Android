@@ -51,6 +51,9 @@ public class HistoryListFragment extends Fragment {
                 if (songList != null) {
                     listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
                 }
+                else {
+                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
+                }
             }
 
             @Override

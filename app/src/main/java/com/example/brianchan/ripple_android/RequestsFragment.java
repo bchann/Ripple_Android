@@ -69,7 +69,7 @@ public class RequestsFragment extends Fragment {
             Song topRequest = requests.peek();
             songnameView.setText(topRequest.getTitle());
             authorView.setText(topRequest.getArtist());
-            albumView.setText(topRequest.getAlbum());
+            albumView.setText(topRequest.getAlbumTitle());
         }
     }
 }

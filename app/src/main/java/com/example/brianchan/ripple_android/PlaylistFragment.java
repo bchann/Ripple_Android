@@ -41,6 +41,9 @@ public class PlaylistFragment extends Fragment {
         ctx = getActivity();
         listView = (ListView) rootView.findViewById(R.id.playlist);
 
+        Global.ctx = ctx;
+        Global.rootView = rootView;
+
         DatabaseReference songsRef = database.getReference("songlists");
         //playlist
         songsRef.child(Party.playlist_id).addValueEventListener(new ValueEventListener() {
@@ -48,8 +51,14 @@ public class PlaylistFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
                 songList = Global.party.getPlaylist().songs;
+                for (Song song: songList){
+                    song.getData();
+                }
                 if (songList != null) {
                     listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
+                }
+                else {
+                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
                 }
             }
 
@@ -60,5 +69,9 @@ public class PlaylistFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    public void toggle(View view) {
+        Global.party.getPlaylist().togglePlayPause();
     }
 }

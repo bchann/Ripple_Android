@@ -1,7 +1,9 @@
 package com.example.brianchan.ripple_android;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -37,6 +40,8 @@ public class SongListItemAdapter extends ArrayAdapter {
         /* Extract the city's object to show */
         Song songListItem = (Song) getItem(position);
 
+        //songListItem.getData();
+
         /* Take the TextView from layout and set the city's name */
         TextView txtName = (TextView) convertView.findViewById(R.id.songName);
         txtName.setText(songListItem.getTitle());
@@ -46,11 +51,11 @@ public class SongListItemAdapter extends ArrayAdapter {
         txtAuthor.setText(songListItem.getArtist());
 
         TextView txtAlbum = (TextView) convertView.findViewById(R.id.albumName);
-        txtAlbum.setText(songListItem.getAlbum());
+        txtAlbum.setText(songListItem.getAlbumTitle());
 
         /* Take the ImageView from layout and set the city's image */
         ImageView imageCity = (ImageView) convertView.findViewById(R.id.ImageCity);
-        /*String uri = "drawable/" + songListItem.getArtUri();
+        /*String uri = "drawable/" + songListItem.getMedImageURI();
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         Drawable image = context.getResources().getDrawable(imageResource);
         imageCity.setImageDrawable(image);*/

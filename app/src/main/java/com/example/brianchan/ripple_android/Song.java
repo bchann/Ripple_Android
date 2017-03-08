@@ -1,6 +1,7 @@
 package com.example.brianchan.ripple_android;
 
 import android.util.Log;
+import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -9,7 +10,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
@@ -35,9 +41,25 @@ public class Song {
     private String title;
     private String uri;
     private long durationMs;
-    private String album;
+    private String albumTitle;
     private String artist;
-    private String artUri;
+
+    public String getSmImageURI() {
+        return smImageURI;
+    }
+
+    public String getMedImageURI() {
+        return medImageURI;
+    }
+
+    public String getLgImageURI() {
+        return lgImageURI;
+    }
+
+    private String smImageURI;
+    private String medImageURI;
+    private String lgImageURI;
+
     private History history;
     private Playlist playlist;
     private Requests requests;
@@ -62,19 +84,51 @@ public class Song {
         getData();
     }
 
-    private void getData() {
+    public void getData() {
         String url = "https://api.spotify.com/v1/tracks/" + songId;
 
         jsonRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             title = response.getString("name");
                             uri = response.getString("uri");
                             durationMs = response.getLong("duration_ms");
-                            //TODO GET ALBUM, ARTIST, AND ALBUM ART
+                            System.err.println(title);
+
+                            String albumType = response.getJSONObject("album").getString("album_type");
+
+                            if (albumType.equals("single")) {
+                                albumTitle = title;
+                            } else {
+                                albumTitle = response.getJSONObject("album").getString("name");
+                            }
+
+                            JSONArray imageObjects = response.getJSONObject("album").getJSONArray("images");
+
+                            smImageURI = imageObjects.getJSONObject(2).getString("url");
+                            medImageURI = imageObjects.getJSONObject(1).getString("url");
+                            lgImageURI = imageObjects.getJSONObject(0).getString("url");
+
+                            ArrayList<String> artists = new ArrayList<>();
+
+                            JSONArray artistObjects = response.getJSONArray("artists");
+
+                            for (int i = 0; i < artistObjects.length(); i++) {
+                                artists.add(artistObjects.getJSONObject(i).getString("name"));
+                            }
+
+                            artist = artists.get(0);
+
+                            ListView listView = (ListView) Global.rootView.findViewById(R.id.playlist);
+                            List<Song> songList = Global.party.getPlaylist().songs;
+                            if (songList != null) {
+                                listView.setAdapter(new SongListItemAdapter(Global.ctx, R.layout.song_view, songList));
+                            }
+                            else {
+                                listView.setAdapter(new SongListItemAdapter(Global.ctx, R.layout.song_view, new LinkedList()));
+                            }
 
                         } catch (Exception e) {
                             Log.e("error", "error parsing data");
@@ -96,8 +150,7 @@ public class Song {
     }
 
     public String getTitle() {
-        return songId;
-        //return title;
+        return title;
     }
 
     public String getUri() {
@@ -108,17 +161,13 @@ public class Song {
         return durationMs;
     }
 
-    public String getAlbum() {
-        return songId;
-        //return album;
+    public String getAlbumTitle() {
+        return albumTitle;
     }
 
     public String getArtist(){
-        return songId;
-        //return artist;
+        return artist;
     }
-
-    public String getArtUri(){ return artUri;}
 
     public void accept() {
         playlist.enqueue(this);

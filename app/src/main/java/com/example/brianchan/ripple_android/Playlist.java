@@ -69,33 +69,37 @@ public class Playlist extends SongList {
             }
         }
         else{
-            if(player.getPlaybackState().positionMs < player.getMetadata().currentTrack.durationMs){
+            /*if(firstTime)*/ playNextSong();
+            /*else if(player.getPlaybackState().positionMs < player.getMetadata().currentTrack.durationMs){
                 player.resume(op);
                 songs.get(0).markPlaying();
                 notify();
-            }
+            }*/
         }
     }
 
     //plays the next song on our playlist
     public void playNextSong(){
+        Log.d("Error", "blah");
         Song currSong = songs.get(0);
-        currSong.markFinishedPlaying();
+
 
         if(firstTime) {
-            nextSongThread = new PlaylistThread(2000, this);
-            player.playUri(op, currSong.getUri(), 0, 180000);
+            nextSongThread = new PlaylistThread(currSong.getDuration(), this);
+            player.playUri(op, currSong.getUri(), 0, 0);
             nextSongThread.start();
-
+            currSong.markPlaying();
             firstTime = !firstTime;
         }
         else{
+            //currSong.markFinishedPlaying();
             remove(currSong);
             if(songs.size() != 0) {
                 Song nextSong =  songs.get(0);
                 nextSongThread = new PlaylistThread(nextSong.getDuration(), this);
                 player.playUri(op, nextSong.getUri(), 0, 0);
                 nextSongThread.start();
+                nextSong.markPlaying();
                 //hist.push(currSong);
             }
         }

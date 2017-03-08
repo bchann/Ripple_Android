@@ -16,11 +16,21 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/section_label"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@color/colorPrimaryDark"
         android:id="@+id/playlist"/>
+
+    <Button
+        android:id="@+id/playPause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/playlist"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:text="Play/Pause"
+        android:onClick="toggle" />
 
 </RelativeLayout>

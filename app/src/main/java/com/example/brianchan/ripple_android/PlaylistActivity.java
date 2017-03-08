@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -120,5 +121,10 @@ public class PlaylistActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void toggle(View view) {
+        Global.party.getPlaylist().enqueue(new Song("0VFXJrXtfuX2iqlnXpl4zD", Global.party, null));
+        Global.party.getPlaylist().playNextSong();
     }
 }
