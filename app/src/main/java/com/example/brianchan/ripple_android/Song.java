@@ -49,6 +49,8 @@ public class Song {
     private final FirebaseDatabase database = getInstance();
     DatabaseReference songlistsRef = database.getReference("songlists");
 
+    Song() {}
+
     public Song(String songId, Party party, Collaborator collaborator) {
         this.songId = songId;
         this.party = party;
@@ -94,7 +96,8 @@ public class Song {
     }
 
     public String getTitle() {
-        return title;
+        return songId;
+        //return title;
     }
 
     public String getUri() {
@@ -105,9 +108,15 @@ public class Song {
         return durationMs;
     }
 
-    public String getAlbum() { return album; }
+    public String getAlbum() {
+        return songId;
+        //return album;
+    }
 
-    public String getArtist(){ return artist;}
+    public String getArtist(){
+        return songId;
+        //return artist;
+    }
 
     public String getArtUri(){ return artUri;}
 

@@ -26,6 +26,7 @@ import static com.google.firebase.database.FirebaseDatabase.getInstance;
 public class PlaylistFragment extends Fragment {
     private List<Song> songList = new LinkedList<>();
     private ListView listView;
+    private Context ctx;
     private final FirebaseDatabase database = getInstance();
 
     public PlaylistFragment() {}
@@ -37,15 +38,26 @@ public class PlaylistFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_playlist, container, false);
-        Context ctx = getActivity();
-
+        ctx = getActivity();
         listView = (ListView) rootView.findViewById(R.id.playlist);
 
-        songList = Global.party.getPlaylist().songs;
+        DatabaseReference songsRef = database.getReference("songlists");
+        //playlist
+        songsRef.child(Party.playlist_id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
+                songList = Global.party.getPlaylist().songs;
+                if (songList != null) {
+                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
+                }
+            }
 
-        if (songList.size() != 0) {
-            listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
 
         return rootView;
     }

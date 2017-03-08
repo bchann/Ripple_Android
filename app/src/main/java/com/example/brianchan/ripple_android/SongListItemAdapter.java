@@ -50,10 +50,11 @@ public class SongListItemAdapter extends ArrayAdapter {
 
         /* Take the ImageView from layout and set the city's image */
         ImageView imageCity = (ImageView) convertView.findViewById(R.id.ImageCity);
-        String uri = "drawable/" + songListItem.getArtUri();
+        /*String uri = "drawable/" + songListItem.getArtUri();
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         Drawable image = context.getResources().getDrawable(imageResource);
-        imageCity.setImageDrawable(image);
+        imageCity.setImageDrawable(image);*/
+        imageCity.setImageResource(R.drawable.geazytemp);
 
         return convertView;
     }
