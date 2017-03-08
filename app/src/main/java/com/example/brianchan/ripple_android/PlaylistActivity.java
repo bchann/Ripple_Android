@@ -121,6 +121,4 @@ public class PlaylistActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }

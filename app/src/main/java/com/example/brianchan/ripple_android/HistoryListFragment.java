@@ -46,8 +46,8 @@ public class HistoryListFragment extends Fragment {
         songsRef.child(Party.history_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
-                songList = Global.party.getPlaylist().songs;
+                Global.party.setHistory(dataSnapshot.getValue(History.class));
+                songList = Global.party.getHistory().songs;
                 if (songList != null) {
                     listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
                 }
