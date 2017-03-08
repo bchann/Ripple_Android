@@ -1,6 +1,5 @@
 package com.example.brianchan.ripple_android;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.util.Log;
 

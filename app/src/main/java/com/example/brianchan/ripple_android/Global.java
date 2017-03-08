@@ -14,6 +14,8 @@ public class Global {
     public static SpotifyPlayer player;
     public static RequestQueue httpRequestQueue;
     public static Party party;
-    public static Context ctx;
-    public static View rootView;
+    public static Context pctx;
+    public static View prootView;
+    public static Context hctx;
+    public static View hrootView;
 }

@@ -1,9 +1,11 @@
 package com.example.brianchan.ripple_android;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
+import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.net.URL;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -24,15 +26,16 @@ public class SongListItemAdapter extends ArrayAdapter {
     private LayoutInflater inflater;
     private Context context;
 
-    public SongListItemAdapter(Context ctx, int resourceId, List objects) {
+    SongListItemAdapter(Context ctx, int resourceId, List objects) {
         super(ctx, resourceId, objects );
         resource = resourceId;
         inflater = LayoutInflater.from( ctx );
         context = ctx;
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent ) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent ) {
 
         /* create a new view of my layout and inflate it in the row */
         convertView = (RelativeLayout) inflater.inflate( resource, null );
@@ -53,14 +56,38 @@ public class SongListItemAdapter extends ArrayAdapter {
         TextView txtAlbum = (TextView) convertView.findViewById(R.id.albumName);
         txtAlbum.setText(songListItem.getAlbumTitle());
 
-        /* Take the ImageView from layout and set the city's image */
-        ImageView imageCity = (ImageView) convertView.findViewById(R.id.ImageCity);
-        /*String uri = "drawable/" + songListItem.getMedImageURI();
-        int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
-        Drawable image = context.getResources().getDrawable(imageResource);
-        imageCity.setImageDrawable(image);*/
-        imageCity.setImageResource(R.drawable.geazytemp);
+        new DownloadImageTask((ImageView) convertView.findViewById(R.id.ImageCity))
+                .execute(songListItem.getMedImageURI());
 
         return convertView;
+    }
+}
+
+/**
+ * Task to fetch the album artwork and set it as the album cover.
+ * I stole this from stackoverflow so don't ask me what it does.
+ */
+class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    private ImageView bmImage;
+
+    DownloadImageTask(ImageView bmImage) {
+        this.bmImage = bmImage;
+    }
+
+    protected Bitmap doInBackground(String... urls) {
+        String urldisplay = urls[0];
+        Bitmap mIcon11 = null;
+        try {
+            InputStream in = new java.net.URL(urldisplay).openStream();
+            mIcon11 = BitmapFactory.decodeStream(in);
+        } catch (Exception e) {
+            Log.e("Error", e.getMessage());
+            e.printStackTrace();
+        }
+        return mIcon11;
+    }
+
+    protected void onPostExecute(Bitmap result) {
+        bmImage.setImageBitmap(result);
     }
 }

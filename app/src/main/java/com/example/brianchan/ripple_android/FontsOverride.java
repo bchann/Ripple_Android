@@ -1,8 +1,9 @@
 package com.example.brianchan.ripple_android;
 
-import java.lang.reflect.Field;
 import android.content.Context;
 import android.graphics.Typeface;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by Brian Chan on 2/28/2017.

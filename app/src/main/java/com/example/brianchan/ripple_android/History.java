@@ -1,6 +1,5 @@
 package com.example.brianchan.ripple_android;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;
 

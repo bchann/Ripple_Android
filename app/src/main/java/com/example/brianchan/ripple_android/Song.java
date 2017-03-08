@@ -121,13 +121,22 @@ public class Song {
 
                             artist = artists.get(0);
 
-                            ListView listView = (ListView) Global.rootView.findViewById(R.id.playlist);
-                            List<Song> songList = Global.party.getPlaylist().songs;
-                            if (songList != null) {
-                                listView.setAdapter(new SongListItemAdapter(Global.ctx, R.layout.song_view, songList));
+                            ListView playlistView = (ListView) Global.prootView.findViewById(R.id.playlist);
+                            List<Song> playlistSongs = Global.party.getPlaylist().songs;
+                            if (playlistSongs != null) {
+                                playlistView.setAdapter(new SongListItemAdapter(Global.pctx, R.layout.song_view, playlistSongs));
                             }
                             else {
-                                listView.setAdapter(new SongListItemAdapter(Global.ctx, R.layout.song_view, new LinkedList()));
+                                playlistView.setAdapter(new SongListItemAdapter(Global.pctx, R.layout.song_view, new LinkedList()));
+                            }
+
+                            ListView historyView = (ListView) Global.hrootView.findViewById(R.id.historyList);
+                            List<Song> historySongs = Global.party.getHistory().songs;
+                            if (historySongs != null) {
+                                historyView.setAdapter(new SongListItemAdapter(Global.hctx, R.layout.song_view, historySongs));
+                            }
+                            else {
+                                historyView.setAdapter(new SongListItemAdapter(Global.hctx, R.layout.song_view, new LinkedList()));
                             }
 
                         } catch (Exception e) {

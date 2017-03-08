@@ -41,8 +41,8 @@ public class PlaylistFragment extends Fragment {
         ctx = getActivity();
         listView = (ListView) rootView.findViewById(R.id.playlist);
 
-        Global.ctx = ctx;
-        Global.rootView = rootView;
+        Global.pctx = ctx;
+        Global.prootView = rootView;
 
         DatabaseReference songsRef = database.getReference("songlists");
         //playlist
@@ -51,11 +51,10 @@ public class PlaylistFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
                 songList = Global.party.getPlaylist().songs;
-                for (Song song: songList){
-                    song.getData();
-                }
                 if (songList != null) {
-                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
+                    for (Song song: songList){
+                        song.getData();
+                    }
                 }
                 else {
                     listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));

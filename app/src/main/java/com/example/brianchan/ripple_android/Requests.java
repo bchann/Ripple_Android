@@ -1,10 +1,6 @@
 package com.example.brianchan.ripple_android;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by rishi on 3/3/17.

@@ -5,7 +5,6 @@ import android.util.Log;
 import com.spotify.sdk.android.player.Error;
 import com.spotify.sdk.android.player.Player;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;

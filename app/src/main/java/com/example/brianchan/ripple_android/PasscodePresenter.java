@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 
-import static com.example.brianchan.ripple_android.Global.party;
-
 
 /**
  * Created by Parikshit on 3/5/17.

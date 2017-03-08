@@ -1,6 +1,5 @@
 package com.example.brianchan.ripple_android;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**

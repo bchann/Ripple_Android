@@ -20,7 +20,7 @@ import java.util.List;
 import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
 /**
- * Created by Parikshit on 3/5/17.
+ * Created by Brian on 3/5/17.
  */
 
 public class HistoryListFragment extends Fragment {
@@ -38,18 +38,22 @@ public class HistoryListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_historylist, container, false);
-        ctx = getActivity();
         listView = (ListView) rootView.findViewById(R.id.historyList);
+        ctx = getActivity();
+
+        Global.hctx = ctx;
+        Global.hrootView = rootView;
 
         DatabaseReference songsRef = database.getReference("songlists");
-        //playlist
         songsRef.child(Party.history_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setHistory(dataSnapshot.getValue(History.class));
                 songList = Global.party.getHistory().songs;
                 if (songList != null) {
-                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
+                    for (Song song: songList){
+                        song.getData();
+                    }
                 }
                 else {
                     listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
