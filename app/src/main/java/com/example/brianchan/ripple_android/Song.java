@@ -226,22 +226,35 @@ public class Song {
     }
 
     public void markFinishedPlaying() {
+        history = Global.party.getHistory();
+        playlist = Global.party.getPlaylist();
+
         history.append(this);
         playlist.dequeue();
         status = FINISHED_PLAYING;
 
-        songlistsRef.child(CHILD).child(Party.history_id).setValue(history);
-        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
+        Global.party.setHistory(history);
+        Global.party.setPlaylist(playlist);
+
+        //songlistsRef.child(Party.history_id).setValue(history);
+        //songlistsRef.child(Party.playlist_id).setValue(playlist);
     }
 
     public void markPlaying() {
+        playlist = Global.party.getPlaylist();
         status = PLAYING;
-        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
+        Global.party.setPlaylist(playlist);
+
+        //songlistsRef.child(Party.playlist_id).setValue(playlist);
     }
 
     public void markPaused() {
+
+        playlist = Global.party.getPlaylist();
         status = PAUSED;
-        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
+        Global.party.setPlaylist(playlist);
+
+        //songlistsRef.child(Party.playlist_id).setValue(playlist);
     }
 
     public String getSmImageURI() {

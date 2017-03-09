@@ -18,8 +18,8 @@ import static com.example.brianchan.ripple_android.Global.player;
 
 public class Playlist extends SongList {
     private Party party;
-    private PlaylistThread nextSongThread;
-    private boolean firstTime;
+    private static PlaylistThread nextSongThread;
+    private boolean firstTime = true;
 
     Player.OperationCallback op;
 
@@ -59,6 +59,7 @@ public class Playlist extends SongList {
 
     public void togglePlayPause(){
         if(player.getPlaybackState().isPlaying){
+            Log.d("debug", "pausing");
             player.pause(op);
             songs.get(0).markPaused();
             try {
@@ -68,12 +69,12 @@ public class Playlist extends SongList {
             }
         }
         else{
-            /*if(firstTime)*/ playNextSong();
-            /*else if(player.getPlaybackState().positionMs < player.getMetadata().currentTrack.durationMs){
+            if(firstTime) playNextSong();
+            else if(player.getPlaybackState().positionMs < player.getMetadata().currentTrack.durationMs){
                 player.resume(op);
                 songs.get(0).markPlaying();
                 notify();
-            }*/
+            }
         }
     }
 
@@ -84,14 +85,15 @@ public class Playlist extends SongList {
 
 
         if(firstTime) {
+            System.err.println("DEBUG: " + this);
             nextSongThread = new PlaylistThread(currSong.getDuration(), this);
             player.playUri(op, currSong.getUri(), 0, 0);
             nextSongThread.start();
             currSong.markPlaying();
-            firstTime = !firstTime;
+            firstTime = false;
         }
         else{
-            //currSong.markFinishedPlaying();
+            currSong.markFinishedPlaying();
             remove(currSong);
             if(songs.size() != 0) {
                 Song nextSong =  songs.get(0);
@@ -99,7 +101,6 @@ public class Playlist extends SongList {
                 player.playUri(op, nextSong.getUri(), 0, 0);
                 nextSongThread.start();
                 nextSong.markPlaying();
-                //hist.push(currSong);
             }
         }
     }

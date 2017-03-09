@@ -124,7 +124,7 @@ public class PlaylistActivity extends AppCompatActivity {
     }
 
     public void toggle(View view) {
-        Global.party.getPlaylist().enqueue(new Song("0VFXJrXtfuX2iqlnXpl4zD", Global.party, null));
-        Global.party.getPlaylist().playNextSong();
+        //Global.party.getPlaylist().enqueue(new Song("0VFXJrXtfuX2iqlnXpl4zD", Global.party, null));
+        Global.party.getPlaylist().togglePlayPause();
     }
 }
