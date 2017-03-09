@@ -1,7 +1,9 @@
 package com.example.brianchan.ripple_android;
 
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -44,18 +46,6 @@ public class Song {
     private String albumTitle;
     private String artist;
 
-    public String getSmImageURI() {
-        return smImageURI;
-    }
-
-    public String getMedImageURI() {
-        return medImageURI;
-    }
-
-    public String getLgImageURI() {
-        return lgImageURI;
-    }
-
     private String smImageURI;
     private String medImageURI;
     private String lgImageURI;
@@ -68,10 +58,16 @@ public class Song {
 
     private JsonObjectRequest jsonRequest;
 
-    private final FirebaseDatabase database = getInstance();
-    DatabaseReference songlistsRef = database.getReference("songlists");
+    private static final FirebaseDatabase database = getInstance();
+    private static final DatabaseReference songlistsRef = database.getReference("songlists");
 
     Song() {}
+
+    Song(String songId, String requester, String status) {
+        this.songId = songId;
+        this.requester = requester;
+        this.status = status;
+    }
 
     public Song(String songId, Party party, Collaborator collaborator) {
         this.songId = songId;
@@ -95,6 +91,7 @@ public class Song {
                             title = response.getString("name");
                             uri = response.getString("uri");
                             durationMs = response.getLong("duration_ms");
+
                             System.err.println(title);
 
                             String albumType = response.getJSONObject("album").getString("album_type");
@@ -120,6 +117,8 @@ public class Song {
                             }
 
                             artist = artists.get(0);
+
+                            updateFields();
 
                             ListView playlistView = (ListView) Global.prootView.findViewById(R.id.playlist);
                             List<Song> playlistSongs = Global.party.getPlaylist().songs;
@@ -154,6 +153,28 @@ public class Song {
         Global.httpRequestQueue.add(jsonRequest);
     }
 
+    private void updateFields() {
+        System.err.println("Called");
+        requests = Global.party.getRequests();
+        TextView songnameView = (TextView) Global.rrootView.findViewById(R.id.songRequest);
+        TextView authorView = (TextView) Global.rrootView.findViewById(R.id.authorRequest);
+        TextView albumView = (TextView) Global.rrootView.findViewById(R.id.albumRequest);
+
+        if (requests.isEmpty()) {
+            songnameView.setText("No More Requests :(");
+            authorView.setText("");
+            albumView.setText("");
+        }
+        else {
+            Song topRequest = requests.peek();
+            songnameView.setText(topRequest.getTitle());
+            authorView.setText(topRequest.getArtist());
+            albumView.setText(topRequest.getAlbumTitle());
+            new DownloadImageTask((ImageView) Global.rrootView.findViewById(R.id.albumArt))
+                    .execute(topRequest.getMedImageURI());
+        }
+    }
+
     public boolean finishedFetchingData() {
         return jsonRequest.hasHadResponseDelivered();
     }
@@ -179,19 +200,29 @@ public class Song {
     }
 
     public void accept() {
-        playlist.enqueue(this);
-        requests.pop();
-        status = ACCEPTED;
+        requests = Global.party.getRequests();
+        playlist = Global.party.getPlaylist();
 
-        songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
-        songlistsRef.child(CHILD).child(Party.request_list_id).setValue(requests);
+        status = ACCEPTED;
+        playlist.enqueue(new Song(this.songId, this.requester, status));
+        requests.pop();
+
+        Global.party.setRequests(requests);
+        Global.party.setPlaylist(playlist);
+
+        //songlistsRef.child(Party.playlist_id).setValue(playlist);
+        //songlistsRef.child(Party.request_list_id).setValue(requests);
+
     }
 
     public void reject(){
+        requests = Global.party.getRequests();
         requests.pop();
         status = REJECTED;
 
-        songlistsRef.child(CHILD).child(Party.request_list_id).setValue(requests);
+        Global.party.setRequests(requests);
+
+        //songlistsRef.child(Global.party.request_list_id).setValue(requests);
     }
 
     public void markFinishedPlaying() {
@@ -211,6 +242,18 @@ public class Song {
     public void markPaused() {
         status = PAUSED;
         songlistsRef.child(CHILD).child(Party.playlist_id).setValue(playlist);
+    }
+
+    public String getSmImageURI() {
+        return smImageURI;
+    }
+
+    public String getMedImageURI() {
+        return medImageURI;
+    }
+
+    public String getLgImageURI() {
+        return lgImageURI;
     }
 
 }

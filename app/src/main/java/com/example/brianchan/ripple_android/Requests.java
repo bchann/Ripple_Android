@@ -25,6 +25,10 @@ public class Requests extends SongList{
     }
 
     public boolean isEmpty() {
+        if (songs == null) {
+            return true;
+        }
+
         return songs.size() == 0;
     }
 

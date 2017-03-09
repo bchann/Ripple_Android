@@ -18,4 +18,6 @@ public class Global {
     public static View prootView;
     public static Context hctx;
     public static View hrootView;
+    public static Context rctx;
+    public static View rrootView;
 }
