@@ -1,6 +1,7 @@
 package com.example.brianchan.ripple_android;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 /**
@@ -18,7 +19,15 @@ public class History extends SongList{
     }
 
     public void append(Song song) {
-        songs.add(song);
+        List<Song> newList = new LinkedList<>();
+        newList.add(song);
+        if (songs != null) {
+            for (Song song1 : songs) {
+                newList.add(song1);
+            }
+        }
+
+        songs = newList;
     }
 
     public void export() {
