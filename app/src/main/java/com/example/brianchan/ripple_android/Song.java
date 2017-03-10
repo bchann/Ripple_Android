@@ -4,6 +4,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -210,6 +211,8 @@ public class Song {
         requests = Global.party.getRequests();
         playlist = Global.party.getPlaylist();
 
+        Toast.makeText(Global.rctx, title + " Accepted!", Toast.LENGTH_LONG).show();
+
         status = ACCEPTED;
         playlist.enqueue(new Song(this.songId, this.requester, status));
         requests.pop();
@@ -241,6 +244,8 @@ public class Song {
         requests = Global.party.getRequests();
         requests.pop();
         status = REJECTED;
+
+        Toast.makeText(Global.rctx, title + " Rejected.", Toast.LENGTH_LONG).show();
 
         Global.party.setRequests(requests);
 

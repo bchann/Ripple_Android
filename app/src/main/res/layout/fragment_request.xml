@@ -12,6 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:textSize="25sp"
+        android:maxLines="1"
         android:text="Song Name" />
 
     <ImageView
@@ -29,6 +30,7 @@
         android:layout_marginTop="25dp"
         android:text="Author"
         android:layout_below="@+id/albumArt"
+        android:maxLines="1"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -38,6 +40,7 @@
         android:layout_marginTop="25dp"
         android:text="Album"
         android:layout_below="@+id/authorRequest"
+        android:maxLines="1"
         android:layout_centerHorizontal="true" />
 
     <android.support.design.widget.FloatingActionButton

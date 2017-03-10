@@ -29,10 +29,24 @@
         android:id="@+id/playPause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="33dp"
         android:text="Play/Pause"
-        android:onClick="toggle" />
+        android:onClick="toggle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/section_label"
+        android:layout_alignEnd="@+id/section_label"
+        android:layout_marginRight="17dp"
+        android:layout_marginEnd="17dp" />
+
+    <Button
+        android:id="@+id/skipButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip"
+        android:layout_marginRight="47dp"
+        android:layout_marginEnd="47dp"
+        android:layout_below="@+id/playlist"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

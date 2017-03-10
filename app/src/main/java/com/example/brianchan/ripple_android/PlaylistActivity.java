@@ -50,7 +50,7 @@ public class PlaylistActivity extends AppCompatActivity {
         //TODO: ADD LISTENERS FOR 3 SONG LISTS
         DatabaseReference songsRef = database.getReference("songlists");
         //playlist
-        songsRef.child(Party.playlist_id).addValueEventListener(new ValueEventListener() {
+        songsRef.child(Party.playlist_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
@@ -63,7 +63,7 @@ public class PlaylistActivity extends AppCompatActivity {
         });
 
         //Requests
-        songsRef.child(Party.request_list_id).addValueEventListener(new ValueEventListener() {
+        songsRef.child(Party.request_list_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setRequests(dataSnapshot.getValue(Requests.class));
@@ -76,7 +76,7 @@ public class PlaylistActivity extends AppCompatActivity {
         });
 
         //History
-        songsRef.child(Party.history_id).addValueEventListener(new ValueEventListener() {
+        songsRef.child(Party.history_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setHistory(dataSnapshot.getValue(History.class));
