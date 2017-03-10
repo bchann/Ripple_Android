@@ -9,13 +9,20 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.gms.actions.NoteIntents;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,15 +33,15 @@ import static com.google.firebase.database.FirebaseDatabase.getInstance;
  */
 
 public class Song {
-    private static final String VALID = "valid";
-    private static final String REQUESTED = "requested";
-    private static final String ACCEPTED = "accepted";
-    private static final String REJECTED = "rejected";
-    private static final String PLAYING = "playing";
-    private static final String PAUSED = "paused";
-    private static final String SKIPPED = "skipped";
-    private static final String FINISHED_PLAYING = "finished playing";
-    private static final String CHILD = "songs";
+    private static final String VALID = "Valid";
+    private static final String REQUESTED = "Requested";
+    private static final String ACCEPTED = "Accepted";
+    private static final String REJECTED = "Rejected";
+    private static final String PLAYING = "Playing";
+    private static final String PAUSED = "Paused";
+    private static final String SKIPPED = "Skipped";
+    private static final String FINISHED_PLAYING = "Finished Playing";
+    private static final String CHILD = "Songs";
 
     public String songId;
     public String requester;
@@ -210,6 +217,23 @@ public class Song {
         Global.party.setRequests(requests);
         Global.party.setPlaylist(playlist);
 
+        database.getReference("notifications").child(requester).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
+                //SUS
+                List<Notification> lst = dataSnapshot.getValue(t);
+                lst.add(new Notification(artist, smImageURI, title,
+                        DateFormat.getDateTimeInstance().format(new Date()), ACCEPTED));
+                database.getReference("notifications").child(requester).setValue(lst);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         //songlistsRef.child(Party.playlist_id).setValue(playlist);
         //songlistsRef.child(Party.request_list_id).setValue(requests);
 
@@ -223,6 +247,23 @@ public class Song {
         Global.party.setRequests(requests);
 
         //songlistsRef.child(Global.party.request_list_id).setValue(requests);
+
+        database.getReference("notifications").child(requester).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
+                //SUS
+                List<Notification> lst = dataSnapshot.getValue(t);
+                lst.add(new Notification(artist, smImageURI, title,
+                        DateFormat.getDateTimeInstance().format(new Date()), REJECTED));
+                database.getReference("notifications").child(requester).setValue(lst);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void markFinishedPlaying() {
