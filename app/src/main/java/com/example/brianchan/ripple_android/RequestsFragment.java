@@ -64,7 +64,7 @@ public class RequestsFragment extends Fragment {
                 requests = Global.party.getRequests();
                 if (!requests.isEmpty()) {
                     Global.party.getRequests().peek().reject();
-                    songlistsRef.child(Party.request_list_id).setValue(Global.party.getRequests());
+                    //songlistsRef.child(Party.request_list_id).setValue(Global.party.getRequests());
                 }
                 updateFields();
             }
@@ -77,8 +77,8 @@ public class RequestsFragment extends Fragment {
                 requests = Global.party.getRequests();
                 if (!requests.isEmpty()) {
                     Global.party.getRequests().peek().accept();
-                    songlistsRef.child(Party.playlist_id).setValue(Global.party.getPlaylist());
-                    songlistsRef.child(Party.request_list_id).setValue(Global.party.getRequests());
+                    //songlistsRef.child(Party.playlist_id).setValue(Global.party.getPlaylist());
+                    //songlistsRef.child(Party.request_list_id).setValue(Global.party.getRequests());
                 }
                 updateFields();
             }

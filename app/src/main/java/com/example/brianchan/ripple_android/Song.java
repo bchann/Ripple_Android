@@ -217,11 +217,13 @@ public class Song {
         Global.party.setRequests(requests);
         Global.party.setPlaylist(playlist);
 
+        songlistsRef.child(Party.request_list_id).setValue(requests);
+        songlistsRef.child(Party.playlist_id).setValue(playlist);
+
         database.getReference("notifications").child(requester).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
-                //SUS
                 List<Notification> lst = dataSnapshot.getValue(t);
                 lst.add(new Notification(artist, smImageURI, title,
                         DateFormat.getDateTimeInstance().format(new Date()), ACCEPTED));
@@ -233,10 +235,6 @@ public class Song {
 
             }
         });
-
-        //songlistsRef.child(Party.playlist_id).setValue(playlist);
-        //songlistsRef.child(Party.request_list_id).setValue(requests);
-
     }
 
     public void reject(){
@@ -246,13 +244,12 @@ public class Song {
 
         Global.party.setRequests(requests);
 
-        //songlistsRef.child(Global.party.request_list_id).setValue(requests);
+        songlistsRef.child(Global.party.request_list_id).setValue(requests);
 
         database.getReference("notifications").child(requester).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
-                //SUS
                 List<Notification> lst = dataSnapshot.getValue(t);
                 lst.add(new Notification(artist, smImageURI, title,
                         DateFormat.getDateTimeInstance().format(new Date()), REJECTED));
@@ -277,8 +274,24 @@ public class Song {
         Global.party.setHistory(history);
         Global.party.setPlaylist(playlist);
 
-        //songlistsRef.child(Party.history_id).setValue(history);
-        //songlistsRef.child(Party.playlist_id).setValue(playlist);
+        database.getReference("notifications").child(requester).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
+                List<Notification> lst = dataSnapshot.getValue(t);
+                lst.add(new Notification(artist, smImageURI, title,
+                        DateFormat.getDateTimeInstance().format(new Date()), FINISHED_PLAYING));
+                database.getReference("notifications").child(requester).setValue(lst);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        songlistsRef.child(Party.history_id).setValue(history);
+        songlistsRef.child(Party.playlist_id).setValue(playlist);
     }
 
     public void markPlaying() {
@@ -286,7 +299,23 @@ public class Song {
         status = PLAYING;
         Global.party.setPlaylist(playlist);
 
-        //songlistsRef.child(Party.playlist_id).setValue(playlist);
+        database.getReference("notifications").child(requester).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
+                List<Notification> lst = dataSnapshot.getValue(t);
+                lst.add(new Notification(artist, smImageURI, title,
+                        DateFormat.getDateTimeInstance().format(new Date()), PLAYING));
+                database.getReference("notifications").child(requester).setValue(lst);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        songlistsRef.child(Party.playlist_id).setValue(playlist);
     }
 
     public void markPaused() {
@@ -295,7 +324,23 @@ public class Song {
         status = PAUSED;
         Global.party.setPlaylist(playlist);
 
-        //songlistsRef.child(Party.playlist_id).setValue(playlist);
+        database.getReference("notifications").child(requester).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
+                List<Notification> lst = dataSnapshot.getValue(t);
+                lst.add(new Notification(artist, smImageURI, title,
+                        DateFormat.getDateTimeInstance().format(new Date()), PAUSED));
+                database.getReference("notifications").child(requester).setValue(lst);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        songlistsRef.child(Party.playlist_id).setValue(playlist);
     }
 
     public String getSmImageURI() {
