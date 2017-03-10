@@ -2,6 +2,7 @@ package com.example.brianchan.ripple_android;
 
 import android.util.Log;
 
+import com.spotify.sdk.android.player.ConnectionStateCallback;
 import com.spotify.sdk.android.player.Error;
 import com.spotify.sdk.android.player.Player;
 
@@ -9,6 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
+import static com.example.brianchan.ripple_android.Global.firstTime;
+import static com.example.brianchan.ripple_android.Global.nextSongThread;
 import static com.example.brianchan.ripple_android.Global.player;
 
 
@@ -17,18 +20,16 @@ import static com.example.brianchan.ripple_android.Global.player;
  */
 
 public class Playlist extends SongList {
-    private Party party;
-    private static PlaylistThread nextSongThread;
-    private boolean firstTime = true;
+    //private static Party party;
 
-    Player.OperationCallback op;
+
+    private static Player.OperationCallback op;
 
     Playlist() {}
 
     Playlist(Party party){
         super("playlist", party.getId(), new LinkedList<Song>());
-        this.party = party;
-        firstTime = true;
+        //this.party = party;
 
         op = new Player.OperationCallback() {
             @Override
@@ -62,24 +63,22 @@ public class Playlist extends SongList {
             Log.d("debug", "pausing");
             player.pause(op);
             songs.get(0).markPaused();
-            try {
-                nextSongThread.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            nextSongThread.onPause();
         }
         else{
-            if(firstTime) playNextSong();
+            if(firstTime) {
+                playNextSong();
+            }
             else if(player.getPlaybackState().positionMs < player.getMetadata().currentTrack.durationMs){
                 player.resume(op);
                 songs.get(0).markPlaying();
-                notify();
+                nextSongThread.onResume();
             }
         }
     }
 
     //plays the next song on our playlist
-    public void playNextSong(){
+    public void playNextSong() {
         Log.d("Error", "blah");
         Song currSong = songs.get(0);
 

@@ -7,6 +7,9 @@ package com.example.brianchan.ripple_android;
 public class PlaylistThread extends Thread {
     private long songDuration;
     private Playlist playlist;
+    private boolean paused;
+    private boolean finished;
+    private Object pauseLock = new Object();
 
     public PlaylistThread(long sD, Playlist playlist) {
         songDuration = sD;
@@ -14,12 +17,40 @@ public class PlaylistThread extends Thread {
     }
 
     public void run() {
-        try {
-            sleep(songDuration);
-            playlist.playNextSong();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while(!finished) {
+            try {
+                sleep(songDuration);
+                playlist.playNextSong();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            synchronized (pauseLock) {
+                while (paused) {
+                    try {
+                        pauseLock.wait();
+                    } catch (InterruptedException e) {
+                    }
+                }
+            }
+        }
+    }
+
+
+    public void onPause(){
+        synchronized (pauseLock){
+            paused = true;
+        }
+    }
+
+
+    public void onResume(){
+        synchronized (pauseLock){
+            paused = false;
+            pauseLock.notify();
         }
 
     }
+
+
 }
