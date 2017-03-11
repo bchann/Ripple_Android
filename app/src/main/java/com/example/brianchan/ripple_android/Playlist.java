@@ -107,9 +107,6 @@ public class Playlist extends SongList {
     //skips to next song
     public void skip(){
         nextSongThread.interrupt();
-        Song skippedSong = songs.get(0);
-        remove(skippedSong);
-        skippedSong.markFinishedPlaying();
     }
 
     public List<Song> reorder(int fromIndex, int toIndex){
