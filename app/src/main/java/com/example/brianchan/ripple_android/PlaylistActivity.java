@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.example.brianchan.ripple_android.Global.*;
 import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
 /**
@@ -24,7 +25,6 @@ import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
 public class PlaylistActivity extends AppCompatActivity {
     private final FirebaseDatabase database = getInstance();
-
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -37,6 +37,8 @@ public class PlaylistActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
+    PlaylistPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class PlaylistActivity extends AppCompatActivity {
         songsRef.child(Party.playlist_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
+                party.setPlaylist(dataSnapshot.getValue(Playlist.class));
             }
 
             @Override
@@ -66,7 +68,7 @@ public class PlaylistActivity extends AppCompatActivity {
         songsRef.child(Party.request_list_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Global.party.setRequests(dataSnapshot.getValue(Requests.class));
+                party.setRequests(dataSnapshot.getValue(Requests.class));
             }
 
             @Override
@@ -79,7 +81,7 @@ public class PlaylistActivity extends AppCompatActivity {
         songsRef.child(Party.history_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Global.party.setHistory(dataSnapshot.getValue(History.class));
+                party.setHistory(dataSnapshot.getValue(History.class));
             }
 
             @Override
@@ -98,6 +100,8 @@ public class PlaylistActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        presenter = new PlaylistPresenter(this);
     }
 
 
@@ -124,7 +128,6 @@ public class PlaylistActivity extends AppCompatActivity {
     }
 
     public void toggle(View view) {
-        //Global.party.getPlaylist().enqueue(new Song("0VFXJrXtfuX2iqlnXpl4zD", Global.party, null));
-        Global.party.getPlaylist().togglePlayPause();
+        presenter.toggle(view);
     }
 }

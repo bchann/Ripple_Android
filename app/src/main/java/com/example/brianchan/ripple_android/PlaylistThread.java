@@ -1,5 +1,7 @@
 package com.example.brianchan.ripple_android;
 
+import android.util.Log;
+
 /**
  * Created by Parikshit on 2/26/17.
  */
@@ -28,6 +30,7 @@ public class PlaylistThread extends Thread {
             synchronized (pauseLock) {
                 while (paused) {
                     try {
+                        Log.d("Debug", "We're waiting");
                         pauseLock.wait();
                     } catch (InterruptedException e) {
                     }
