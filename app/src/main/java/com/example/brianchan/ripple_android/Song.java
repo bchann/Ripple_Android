@@ -193,7 +193,6 @@ public class Song {
         playlist.enqueue(this);
         requests.pop();
 
-        System.err.println("DEBUG in song: " + this.getDuration());
 
         Global.party.setRequests(requests);
         Global.party.setPlaylist(playlist);

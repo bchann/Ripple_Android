@@ -52,12 +52,6 @@ public class PlaylistFragment extends Fragment {
                 if (songList == null) {
                     listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
                 } else {
-                    System.out.println("DEBUGg in playlist: " + Global.party.getPlaylist().songs.get(0).getAlbumTitle());
-                    System.out.println("DEBUGg in playlist: " + Global.party.getPlaylist().songs.get(0).getMedImageURI());
-                    System.out.println("DEBUGg in playlist: " + Global.party.getPlaylist().songs.get(0).getTitle());
-                    System.out.println("DEBUGg in playlist: " + Global.party.getPlaylist().songs.get(0).getArtist());
-                    System.out.println("DEBUGg in playlist: " + Global.party.getPlaylist().songs.get(0).getDuration());
-                    System.out.println("DEBUGg in playlist: " + songList.get(0).getDuration());
                     ListView playlistView = (ListView) rootView.findViewById(R.id.playlist);
                     playlistView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
                 }

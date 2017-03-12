@@ -47,13 +47,15 @@ public class Playlist extends SongList {
         if (songs == null) {
             songs = new LinkedList<Song>();
         }
-        System.out.println("DEBUG in playlist.java: " + song.getDuration());
         songs.add(song);
         Global.party.setPlaylist(this);
     }
 
     public Song dequeue() {
-        return songs.remove(0);
+        System.out.println("DEBUG: The song that dequeued was: " + songs.get(0).getTitle());
+        songs.remove(0);
+        System.out.println("DEBUG: The song that's first is: " + songs.get(0).getTitle());
+        return songs.get(0);
     }
 
     private void remove(Song song) {
@@ -61,10 +63,8 @@ public class Playlist extends SongList {
     }
 
     public void togglePlayPause() {
-        System.err.println("DEBUGG: " + Global.party.getPlaylist().songs.get(0).getDuration());
         if (!songs.isEmpty()) {
             if (player.getPlaybackState().isPlaying) {
-                Log.d("debug", "pausing");
                 player.pause(op);
                 songs.get(0).markPaused();
                 nextSongThread.onPause();
@@ -83,12 +83,11 @@ public class Playlist extends SongList {
 
     //plays the next song on our playlist
     public void playNextSong() {
-        Log.d("Error", "blah");
-        System.err.println("DEBUGGG: " + Global.party.getPlaylist().songs.get(0).getDuration());
+
         if(!songs.isEmpty()){
-            Song currSong = Global.party.getPlaylist().songs.get(0);
+            Song currSong = songs.get(0);
+            System.out.println("Debug: The current song is: " +  songs.get(0).getTitle());
             if(firstTime) {
-                System.err.println("DEBUG: " + this);
                 nextSongThread = new PlaylistThread(currSong.getDuration(), this);
                 player.playUri(op, currSong.getUri(), 0, 0);
                 nextSongThread.start();
@@ -96,10 +95,13 @@ public class Playlist extends SongList {
                 firstTime = false;
             }
             else{
+                System.out.println("DEBUG: The song that just finished is: " +  songs.get(0).getTitle());
                 currSong.markFinishedPlaying();
-                //remove(currSong);
+                System.out.println("DEBUG: The song about to start is: " + songs.get(0).getTitle());
+                remove(currSong);
                 if(!songs.isEmpty()) {
                     Song nextSong =  songs.get(0);
+                    System.out.println("DEBUG: The NEXT SONG IS: " + nextSong.getTitle());
                     nextSongThread = new PlaylistThread(nextSong.getDuration(), this);
                     player.playUri(op, nextSong.getUri(), 0, 0);
                     nextSongThread.start();
@@ -112,8 +114,6 @@ public class Playlist extends SongList {
 
     //skips to next song
     public void skip(){
-        Log.d("Debug", "" + songs.size());
-        //Log.d("Debug", "" + Global.party.getPlaylist().songs.size());
         if(songs.size() > 1) {
             nextSongThread.interrupt();
         }

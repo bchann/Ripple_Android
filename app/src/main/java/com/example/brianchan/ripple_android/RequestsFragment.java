@@ -78,8 +78,6 @@ public class RequestsFragment extends Fragment {
                 requests = Global.party.getRequests();
                 if (!requests.isEmpty()) {
                     Song song = Global.party.getRequests().peek();
-                    System.out.println("DEBUG in req: " + Global.party.getRequests().songs.get(0).getDuration());
-                    System.out.println("DEBUG in req: " + song.getDuration());
                     song.accept();
                     Toast.makeText(ctx, song.getTitle() + " Accepted!", Toast.LENGTH_SHORT).show();
                 }

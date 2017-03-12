@@ -15,6 +15,7 @@ public class PlaylistThread extends Thread {
 
     public PlaylistThread(long sD, Playlist playlist) {
         songDuration = sD;
+        System.out.println("DEBUG: The song duration is: " + songDuration);
         this.playlist = playlist;
     }
 
