@@ -28,7 +28,6 @@ public class PlaylistFragment extends Fragment {
     private ListView listView;
     private Context ctx;
     private final FirebaseDatabase database = getInstance();
-    private Playlist playlist1 = new Playlist(Global.party);
 
     public PlaylistFragment() {}
 
@@ -42,26 +41,26 @@ public class PlaylistFragment extends Fragment {
         ctx = getActivity();
         listView = (ListView) rootView.findViewById(R.id.playlist);
 
-        Global.pctx = ctx;
-        Global.prootView = rootView;
-
         DatabaseReference songsRef = database.getReference("songlists");
         //playlist
         songsRef.child(Party.playlist_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
-
-                playlist1 = Global.party.getPlaylist();
-                songList = playlist1.songs;
+                songList = Global.party.getPlaylist().songs;
 
                 if (songList == null) {
                     listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
                 } else {
+                    System.out.println("DEBUGg in playlist: " + Global.party.getPlaylist().songs.get(0).getAlbumTitle());
+                    System.out.println("DEBUGg in playlist: " + Global.party.getPlaylist().songs.get(0).getMedImageURI());
+                    System.out.println("DEBUGg in playlist: " + Global.party.getPlaylist().songs.get(0).getTitle());
+                    System.out.println("DEBUGg in playlist: " + Global.party.getPlaylist().songs.get(0).getArtist());
+                    System.out.println("DEBUGg in playlist: " + Global.party.getPlaylist().songs.get(0).getDuration());
+                    System.out.println("DEBUGg in playlist: " + songList.get(0).getDuration());
                     ListView playlistView = (ListView) rootView.findViewById(R.id.playlist);
                     playlistView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
                 }
-
             }
 
             @Override

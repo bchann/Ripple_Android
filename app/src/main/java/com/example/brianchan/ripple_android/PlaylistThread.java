@@ -48,12 +48,9 @@ public class PlaylistThread extends Thread {
 
 
     public void onResume(){
-        synchronized (pauseLock){
+        synchronized (pauseLock) {
             paused = false;
             pauseLock.notifyAll();
         }
-
     }
-
-
 }

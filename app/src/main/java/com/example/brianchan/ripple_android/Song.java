@@ -2,15 +2,12 @@ package com.example.brianchan.ripple_android;
 
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.android.gms.actions.NoteIntents;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +21,6 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import static com.google.firebase.database.FirebaseDatabase.getInstance;
@@ -50,7 +46,7 @@ public class Song {
 
     private String title;
     private String uri;
-    private long durationMs;
+    private long duration;
     private String albumTitle;
     private String artist;
 
@@ -98,7 +94,7 @@ public class Song {
                         try {
                             title = response.getString("name");
                             uri = response.getString("uri");
-                            durationMs = response.getLong("duration_ms");
+                            duration = response.getLong("duration_ms");
 
                             System.err.println(title);
 
@@ -178,7 +174,7 @@ public class Song {
     }
 
     public long getDuration() {
-        return durationMs;
+        return duration;
     }
 
     public String getAlbumTitle() {
@@ -196,6 +192,8 @@ public class Song {
         status = ACCEPTED;
         playlist.enqueue(this);
         requests.pop();
+
+        System.err.println("DEBUG in song: " + this.getDuration());
 
         Global.party.setRequests(requests);
         Global.party.setPlaylist(playlist);

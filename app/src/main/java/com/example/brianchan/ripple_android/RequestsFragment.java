@@ -48,17 +48,16 @@ public class RequestsFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_request, container, false);
         ctx = getActivity();
 
+        Global.rrootView = rootView;
+
         songnameView = (TextView) rootView.findViewById(R.id.songRequest);
         authorView = (TextView) rootView.findViewById(R.id.authorRequest);
         albumView = (TextView) rootView.findViewById(R.id.albumRequest);
         image = (ImageView) rootView.findViewById(R.id.albumArt);
 
-        Global.rctx = ctx;
-        Global.rrootView = rootView;
-
         //updateFields();
 
-        FloatingActionButton reject = (FloatingActionButton) rootView.findViewById(R.id.rejectButton);
+        final FloatingActionButton reject = (FloatingActionButton) rootView.findViewById(R.id.rejectButton);
         reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +67,7 @@ public class RequestsFragment extends Fragment {
                     song.accept();
                     Toast.makeText(ctx, song.getTitle() + " Accepted!", Toast.LENGTH_SHORT).show();
                 }
-                updateFields();
+                updateFields(rootView);
             }
         });
 
@@ -79,10 +78,12 @@ public class RequestsFragment extends Fragment {
                 requests = Global.party.getRequests();
                 if (!requests.isEmpty()) {
                     Song song = Global.party.getRequests().peek();
+                    System.out.println("DEBUG in req: " + Global.party.getRequests().songs.get(0).getDuration());
+                    System.out.println("DEBUG in req: " + song.getDuration());
                     song.accept();
                     Toast.makeText(ctx, song.getTitle() + " Accepted!", Toast.LENGTH_SHORT).show();
                 }
-                updateFields();
+                updateFields(rootView);
             }
         });
 
@@ -92,13 +93,13 @@ public class RequestsFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setRequests(dataSnapshot.getValue(Requests.class));
                 requests = Global.party.getRequests();
-                songList = Global.party.getRequests().songs;
+                songList = requests.songs;
                 if (songList != null) {
                     for (Song song: songList){
                         song.getData();
                     }
                 }
-                updateFields();
+                updateFields(rootView);
             }
 
             @Override
@@ -110,7 +111,7 @@ public class RequestsFragment extends Fragment {
         return rootView;
     }
 
-    private void updateFields() {
+    private void updateFields(View view) {
         requests = Global.party.getRequests();
         if (requests.isEmpty()) {
             songnameView.setText("No More Requests :(");
@@ -123,7 +124,7 @@ public class RequestsFragment extends Fragment {
             songnameView.setText(topRequest.getTitle());
             authorView.setText(topRequest.getArtist());
             albumView.setText(topRequest.getAlbumTitle());
-            new DownloadImageTask((ImageView) Global.rrootView.findViewById(R.id.albumArt))
+            new DownloadImageTask((ImageView) view.findViewById(R.id.albumArt))
                     .execute(topRequest.getMedImageURI());
         }
     }

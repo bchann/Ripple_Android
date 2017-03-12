@@ -24,6 +24,7 @@ public class PlaylistPresenter {
 
 
     public void toggle(View view){
+        System.out.println("DEBUG in PlaylistPresenter: " + Global.party.getPlaylist().songs.get(0).getDuration());
         play = Global.party.getPlaylist();
         play.togglePlayPause();
     }

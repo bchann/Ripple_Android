@@ -41,9 +41,6 @@ public class HistoryListFragment extends Fragment {
         listView = (ListView) rootView.findViewById(R.id.historyList);
         ctx = getActivity();
 
-        Global.hctx = ctx;
-        Global.hrootView = rootView;
-
         DatabaseReference songsRef = database.getReference("songlists");
         songsRef.child(Party.history_id).addValueEventListener(new ValueEventListener() {
             @Override

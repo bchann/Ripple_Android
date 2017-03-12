@@ -58,23 +58,22 @@ public class PlaylistActivity extends AppCompatActivity {
         //TODO: ADD LISTENERS FOR 3 SONG LISTS
         DatabaseReference songsRef = database.getReference("songlists");
         //playlist
-        songsRef.child(Party.playlist_id).addListenerForSingleValueEvent(new ValueEventListener() {
+        /*songsRef.child(Party.playlist_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                party.setPlaylist(dataSnapshot.getValue(Playlist.class));
+                Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
             }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+            @Overridepublic void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
-        });
+        });*/
 
         //Requests
         songsRef.child(Party.request_list_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                party.setRequests(dataSnapshot.getValue(Requests.class));
+                Global.party.setRequests(dataSnapshot.getValue(Requests.class));
             }
 
             @Override
@@ -87,7 +86,7 @@ public class PlaylistActivity extends AppCompatActivity {
         songsRef.child(Party.history_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                party.setHistory(dataSnapshot.getValue(History.class));
+                Global.party.setHistory(dataSnapshot.getValue(History.class));
             }
 
             @Override

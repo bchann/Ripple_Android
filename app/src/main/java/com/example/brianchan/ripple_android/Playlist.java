@@ -47,7 +47,9 @@ public class Playlist extends SongList {
         if (songs == null) {
             songs = new LinkedList<Song>();
         }
+        System.out.println("DEBUG in playlist.java: " + song.getDuration());
         songs.add(song);
+        Global.party.setPlaylist(this);
     }
 
     public Song dequeue() {
@@ -59,6 +61,7 @@ public class Playlist extends SongList {
     }
 
     public void togglePlayPause() {
+        System.err.println("DEBUGG: " + Global.party.getPlaylist().songs.get(0).getDuration());
         if (!songs.isEmpty()) {
             if (player.getPlaybackState().isPlaying) {
                 Log.d("debug", "pausing");
@@ -81,8 +84,9 @@ public class Playlist extends SongList {
     //plays the next song on our playlist
     public void playNextSong() {
         Log.d("Error", "blah");
+        System.err.println("DEBUGGG: " + Global.party.getPlaylist().songs.get(0).getDuration());
         if(!songs.isEmpty()){
-            Song currSong = songs.get(0);
+            Song currSong = Global.party.getPlaylist().songs.get(0);
             if(firstTime) {
                 System.err.println("DEBUG: " + this);
                 nextSongThread = new PlaylistThread(currSong.getDuration(), this);

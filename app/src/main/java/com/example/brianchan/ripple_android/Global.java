@@ -14,11 +14,6 @@ public class Global {
     public static SpotifyPlayer player;
     public static RequestQueue httpRequestQueue;
     public static Party party;
-    public static Context pctx;
-    public static View prootView;
-    public static Context hctx;
-    public static View hrootView;
-    public static Context rctx;
     public static View rrootView;
     public static PlaylistThread nextSongThread;
     public static boolean firstTime = true;
