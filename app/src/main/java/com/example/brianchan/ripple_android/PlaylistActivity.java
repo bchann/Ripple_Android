@@ -138,6 +138,10 @@ public class PlaylistActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        //Reset threads on app exit
+        Global.player.pause(null);
+        Global.nextSongThread.onPause();
+
         Intent intent = new Intent(this, AuthActivity.class);
         startActivity(intent);
     }

@@ -4,7 +4,7 @@
     android:layout_height="60sp">
 
     <ImageView
-        android:id="@+id/ImageCity"
+        android:id="@+id/songViewAlbum"
         android:layout_width="60sp"
         android:layout_height="60sp" />
 
