@@ -17,6 +17,8 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.microedition.khronos.opengles.GL;
+
 /**
  * Created by Brian Chan on 3/3/2017.
  */
@@ -66,14 +68,18 @@ public class SongListItemAdapter extends ArrayAdapter {
         moveUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Global.party.getPlaylist().reorder(position + 1, position + 2);
+                if (position > 2) {
+                    Global.party.getPlaylist().reorder(position, position - 1);
+                }
             }
         });
 
         moveDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Global.party.getPlaylist().reorder(position + 1, position);
+                if (position != Global.party.getPlaylist().songs.size() - 1 && position > 1) {
+                    Global.party.getPlaylist().reorder(position, position + 1);
+                }
             }
         });
 
