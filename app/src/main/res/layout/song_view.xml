@@ -11,11 +11,13 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_toRightOf="@id/ImageCity"
         android:orientation="vertical"
         android:paddingLeft="10sp"
         android:paddingRight="40sp"
-        android:id="@+id/songText">
+        android:id="@+id/songText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
         <TextView
             android:id="@+id/songName"
@@ -43,23 +45,29 @@
         android:layout_width="39sp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_alignRight="@+id/songText">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
-        <TextView
+        <com.example.brianchan.ripple_android.TextFonts
             android:id="@+id/moveUp"
             android:layout_width="match_parent"
-            android:layout_height="39sp"
-            android:gravity="center"
-            android:clickable="true"
+            android:layout_height="20sp"
             android:layout_marginBottom="2sp"
-            android:text="^" />
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="&#xf0d8;"
+            android:textSize="25sp" />
 
-        <TextView
+        <com.example.brianchan.ripple_android.TextFonts
             android:id="@+id/moveDown"
             android:layout_width="match_parent"
-            android:layout_height="39sp"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:clickable="true"
-            android:text="v" />
+            android:gravity="center"
+            android:text="&#xf0d7;"
+            android:textSize="25sp" />
     </LinearLayout>
 </RelativeLayout>
