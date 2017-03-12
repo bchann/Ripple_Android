@@ -80,7 +80,7 @@ public class RequestsFragment extends Fragment {
                 if (!requests.isEmpty()) {
                     Song song = Global.party.getRequests().peek();
                     song.accept();
-                    Toast.makeText(ctx, song.getTitle() + " Rejected.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ctx, song.getTitle() + " Accepted!", Toast.LENGTH_SHORT).show();
                 }
                 updateFields();
             }
@@ -94,10 +94,9 @@ public class RequestsFragment extends Fragment {
                 requests = Global.party.getRequests();
                 songList = Global.party.getRequests().songs;
                 if (songList != null) {
-                    /*for (Song song: songList){
+                    for (Song song: songList){
                         song.getData();
-                    }*/
-                    songList.get(0).getData();
+                    }
                 }
                 updateFields();
             }

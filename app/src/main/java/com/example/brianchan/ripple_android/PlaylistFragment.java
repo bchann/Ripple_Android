@@ -51,17 +51,17 @@ public class PlaylistFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
-                playlist1 = Global.party.getPlaylist();
-                if (playlist1 != null) {
-                    songList = playlist1.songs;
 
-                    if (songList == null) {
-                        listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
-                    } else {
-                        ListView playlistView = (ListView) rootView.findViewById(R.id.playlist);
-                        playlistView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
-                    }
+                playlist1 = Global.party.getPlaylist();
+                songList = playlist1.songs;
+
+                if (songList == null) {
+                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
+                } else {
+                    ListView playlistView = (ListView) rootView.findViewById(R.id.playlist);
+                    playlistView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
                 }
+
             }
 
             @Override

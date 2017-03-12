@@ -44,9 +44,10 @@ public class Playlist extends SongList {
     }
 
     public void enqueue(Song song) {
+        if (songs == null) {
+            songs = new LinkedList<Song>();
+        }
         songs.add(song);
-
-        String songName = song.getTitle();
     }
 
     public Song dequeue() {

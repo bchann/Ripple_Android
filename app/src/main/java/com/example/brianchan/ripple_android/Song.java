@@ -193,10 +193,6 @@ public class Song {
         requests = Global.party.getRequests();
         playlist = Global.party.getPlaylist();
 
-        if (playlist == null) {
-            playlist = new Playlist(Global.party);
-        }
-
         status = ACCEPTED;
         playlist.enqueue(this);
         requests.pop();
@@ -279,7 +275,7 @@ public class Song {
 
         songlistsRef.child(Party.history_id).setValue(history);
         if(party == null) {
-            songlistsRef.child(Party.playlist_id).setValue(new LinkedList<Song>());
+            songlistsRef.child(Party.playlist_id).child("songs").setValue(null);
         }
         else {
             songlistsRef.child(Party.playlist_id).setValue(playlist);
