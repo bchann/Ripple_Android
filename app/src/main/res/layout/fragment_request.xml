@@ -56,7 +56,7 @@
         app:srcCompat="@android:drawable/ic_delete"
         android:layout_below="@+id/albumRequest"
         android:layout_toLeftOf="@+id/albumArt"
-        android:layout_toStartOf="@+id/albumArt" />
+        android:layout_toStartOf="@+id/albumArt"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/acceptButton"
