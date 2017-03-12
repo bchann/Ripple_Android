@@ -64,8 +64,8 @@ public class RequestsFragment extends Fragment {
                 requests = Global.party.getRequests();
                 if (!requests.isEmpty()) {
                     Song song = Global.party.getRequests().peek();
-                    song.accept();
-                    Toast.makeText(ctx, song.getTitle() + " Accepted!", Toast.LENGTH_SHORT).show();
+                    song.reject();
+                    Toast.makeText(ctx, song.getTitle() + " Rejected.", Toast.LENGTH_SHORT).show();
                 }
                 updateFields(rootView);
             }
