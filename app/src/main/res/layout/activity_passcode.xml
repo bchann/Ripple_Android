@@ -73,6 +73,5 @@
         android:id="@+id/passcodeText"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
-        <!--android:background="@drawable/passcode_back"/>-->
 
 </RelativeLayout>

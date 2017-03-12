@@ -68,7 +68,7 @@ public class SongListItemAdapter extends ArrayAdapter {
             txtAuthor.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
         }
 
-        if (position > 1) {
+        if (position > 1 && Global.party.getPlaylist().songs != null) {
             moveUp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
