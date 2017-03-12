@@ -21,6 +21,8 @@
     <string name="play_icon">&#xf04b;</string>
     <string name="pause_icon">&#xf04c;</string>
     <string name="skip_icon">&#xf051;</string>
+    <string name="enter_party_text">&#xf090;  Enter Party</string>
+    <string name="share_passcode_text">&#xf1e0;  Share Passcode (SMS)</string>
     <string name="spotify_icon">Connect with Spotify &#xf1bc;</string>
     <string name="what_is_a_party">What is a Party?</string>
     <string name="party_description">You create a party to collaborate on a playlist with friends.

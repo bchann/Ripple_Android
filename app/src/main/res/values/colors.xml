@@ -5,4 +5,6 @@
     <color name="colorDark">#172935</color>
     <color name="colorAccent">#02B3E4</color>
     <color name="white">#FFFFFF</color>
+    <color name="btnBorder">#40698c</color>
+    <color name="btnFill">#345470</color>
 </resources>

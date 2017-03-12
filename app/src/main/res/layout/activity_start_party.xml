@@ -27,28 +27,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:text="@string/what_is_a_party"
         android:id="@+id/party"
         android:layout_above="@+id/party_description"
-        android:layout_centerHorizontal="true" />
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"/>
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:text="@string/party_description"
         android:id="@+id/party_description"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        />
+
     <!--android:layout_alignParentBottom="true"-->
     <!--&lt;!&ndash;android:layout_alignParentLeft="true"&ndash;&gt;-->
     <!--android:layout_alignParentStart="true"-->
 
     <Button
         android:text="Create a Party"
+        android:textSize="17sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@drawable/button_text_color"

@@ -18,7 +18,7 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
         //Override monospace to be montessarrat LOL
-        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/montserrat.ttf");
+        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/reemkufi.ttf");
 
         presenter = new AuthPresenter(this);
     }
