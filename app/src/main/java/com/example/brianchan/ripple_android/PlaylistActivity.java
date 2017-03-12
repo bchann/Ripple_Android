@@ -1,12 +1,15 @@
 package com.example.brianchan.ripple_android;
 
+import android.view.View;
 import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.example.brianchan.ripple_android.Global.*;
 import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
 /**
@@ -25,7 +29,6 @@ import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
 public class PlaylistActivity extends AppCompatActivity {
     private final FirebaseDatabase database = getInstance();
-
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -39,10 +42,15 @@ public class PlaylistActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+    PlaylistPresenter presenter;
+    Context ctx;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
+        ctx = this;
 
         // navbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -54,7 +62,7 @@ public class PlaylistActivity extends AppCompatActivity {
         songsRef.child(Party.playlist_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
+                party.setPlaylist(dataSnapshot.getValue(Playlist.class));
             }
 
             @Override
@@ -67,7 +75,7 @@ public class PlaylistActivity extends AppCompatActivity {
         songsRef.child(Party.request_list_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Global.party.setRequests(dataSnapshot.getValue(Requests.class));
+                party.setRequests(dataSnapshot.getValue(Requests.class));
             }
 
             @Override
@@ -80,7 +88,7 @@ public class PlaylistActivity extends AppCompatActivity {
         songsRef.child(Party.history_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Global.party.setHistory(dataSnapshot.getValue(History.class));
+                party.setHistory(dataSnapshot.getValue(History.class));
             }
 
             @Override
@@ -99,6 +107,9 @@ public class PlaylistActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        presenter = new PlaylistPresenter(this);
+        Log.d("Debug", "we got here");
     }
 
 
@@ -125,8 +136,7 @@ public class PlaylistActivity extends AppCompatActivity {
     }
 
     public void toggle(View view) {
-        //Global.party.getPlaylist().enqueue(new Song("0VFXJrXtfuX2iqlnXpl4zD", Global.party, null));
-        Global.party.getPlaylist().togglePlayPause();
+        presenter.toggle(view);
     }
 
     @Override
@@ -134,4 +144,6 @@ public class PlaylistActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AuthActivity.class);
         startActivity(intent);
     }
+
+    public void skip(View view) { presenter.skip(view); }
 }

@@ -11,15 +11,15 @@
     tools:context="com.example.brianchan.ripple_android.AuthActivity">
 
     <Button
-        android:text="Start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="52dp"
-        android:textColor="@drawable/button_text_color"
         android:background="@drawable/custom_button"
-        android:onClick="connect"/>
+        android:onClick="connect"
+        android:text="Connect with Spotify"
+        android:textColor="@drawable/button_text_color" />
 
     <com.example.brianchan.ripple_android.RippleFont
         android:layout_width="match_parent"
