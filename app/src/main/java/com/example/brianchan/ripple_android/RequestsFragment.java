@@ -57,7 +57,7 @@ public class RequestsFragment extends Fragment {
 
         //updateFields();
 
-        final FloatingActionButton reject = (FloatingActionButton) rootView.findViewById(R.id.rejectButton);
+        FloatingActionButton reject = (FloatingActionButton) rootView.findViewById(R.id.rejectButton);
         reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

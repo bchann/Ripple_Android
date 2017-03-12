@@ -13,7 +13,9 @@
         android:layout_height="fill_parent"
         android:layout_toRightOf="@id/ImageCity"
         android:orientation="vertical"
-        android:paddingLeft="10sp">
+        android:paddingLeft="10sp"
+        android:paddingRight="40sp"
+        android:id="@+id/songText">
 
         <TextView
             android:id="@+id/songName"
@@ -35,5 +37,29 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:maxLines="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="39sp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignRight="@+id/songText">
+
+        <TextView
+            android:id="@+id/moveUp"
+            android:layout_width="match_parent"
+            android:layout_height="39sp"
+            android:gravity="center"
+            android:clickable="true"
+            android:layout_marginBottom="2sp"
+            android:text="^" />
+
+        <TextView
+            android:id="@+id/moveDown"
+            android:layout_width="match_parent"
+            android:layout_height="39sp"
+            android:gravity="center"
+            android:clickable="true"
+            android:text="v" />
     </LinearLayout>
 </RelativeLayout>
