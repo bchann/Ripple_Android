@@ -22,4 +22,8 @@
     <string name="pause_icon">&#xf04c;</string>
     <string name="skip_icon">&#xf051;</string>
     <string name="spotify_icon">Connect with Spotify &#xf1bc;</string>
+    <string name="what_is_a_party">What is a Party?</string>
+    <string name="party_description">You create a party to collaborate on a playlist with friends.
+        Your friends can join the party by entering your party’s 4-digit passcode.</string>
+
 </resources>

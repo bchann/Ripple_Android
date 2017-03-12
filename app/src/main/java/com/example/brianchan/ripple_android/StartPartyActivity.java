@@ -17,8 +17,6 @@ public class StartPartyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_party);
 
-        TextView login = (TextView) findViewById(R.id.logintext);
-        login.setText("Logged in as: " );
     }
 
     public void startParty(View view) {
