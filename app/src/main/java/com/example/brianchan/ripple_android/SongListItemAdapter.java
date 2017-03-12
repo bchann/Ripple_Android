@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +18,6 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.util.List;
 
-import javax.microedition.khronos.opengles.GL;
-
 /**
  * Created by Brian Chan on 3/3/2017.
  */
@@ -27,12 +26,14 @@ public class SongListItemAdapter extends ArrayAdapter {
     private int resource;
     private LayoutInflater inflater;
     private Context context;
+    private boolean isPlaylist;
 
-    SongListItemAdapter(Context ctx, int resourceId, List objects) {
+    SongListItemAdapter(Context ctx, int resourceId, List objects, boolean isPlaylist) {
         super(ctx, resourceId, objects );
         resource = resourceId;
         inflater = LayoutInflater.from( ctx );
         context = ctx;
+        this.isPlaylist = isPlaylist;
     }
 
     @NonNull
@@ -65,23 +66,41 @@ public class SongListItemAdapter extends ArrayAdapter {
         TextView moveUp = (TextView) convertView.findViewById(R.id.moveUp);
         TextView moveDown = (TextView) convertView.findViewById(R.id.moveDown);
 
-        moveUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (position > 2) {
-                    Global.party.getPlaylist().reorder(position, position - 1);
-                }
-            }
-        });
+        if (position == 0 && isPlaylist) {
+            convertView.setBackgroundResource(R.drawable.album_border);
+            txtName.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
+            txtAuthor.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
+            txtAlbum.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
+        }
 
-        moveDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (position != Global.party.getPlaylist().songs.size() - 1 && position > 1) {
-                    Global.party.getPlaylist().reorder(position, position + 1);
+        if (position > 1) {
+            moveUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (position > 2) {
+                        Global.party.getPlaylist().reorder(position, position - 1);
+                    }
                 }
-            }
-        });
+            });
+
+            moveDown.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (position != Global.party.getPlaylist().songs.size() - 1 && position > 1) {
+                        Global.party.getPlaylist().reorder(position, position + 1);
+                    }
+                }
+            });
+        }
+
+        if (!isPlaylist || position < 2) {
+            moveUp.setText("");
+            moveDown.setText("");
+        }
+
+        if (position == Global.party.getPlaylist().songs.size() - 1) {
+            moveDown.setText("");
+        }
 
         return convertView;
     }
