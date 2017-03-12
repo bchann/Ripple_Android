@@ -48,7 +48,7 @@
         <TextView
             android:id="@+id/moveUp"
             android:layout_width="match_parent"
-            android:layout_height="24sp"
+            android:layout_height="39sp"
             android:gravity="center"
             android:clickable="true"
             android:layout_marginBottom="2sp"
@@ -57,7 +57,7 @@
         <TextView
             android:id="@+id/moveDown"
             android:layout_width="match_parent"
-            android:layout_height="24sp"
+            android:layout_height="39sp"
             android:gravity="center"
             android:clickable="true"
             android:text="v" />

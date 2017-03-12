@@ -66,14 +66,14 @@ public class SongListItemAdapter extends ArrayAdapter {
         moveUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Global.party.getPlaylist().reorder(position, position + 1);
+                Global.party.getPlaylist().reorder(position + 1, position + 2);
             }
         });
 
         moveDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Global.party.getPlaylist().reorder(position, position - 1);
+                Global.party.getPlaylist().reorder(position + 1, position);
             }
         });
 

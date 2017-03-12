@@ -2,6 +2,8 @@ package com.example.brianchan.ripple_android;
 
 import android.util.Log;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.spotify.sdk.android.player.ConnectionStateCallback;
 import com.spotify.sdk.android.player.Error;
 import com.spotify.sdk.android.player.Player;
@@ -13,6 +15,7 @@ import java.util.ListIterator;
 import static com.example.brianchan.ripple_android.Global.firstTime;
 import static com.example.brianchan.ripple_android.Global.nextSongThread;
 import static com.example.brianchan.ripple_android.Global.player;
+import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
 
 /**
@@ -23,6 +26,8 @@ public class Playlist extends SongList {
     //private static Party party;
 
     private static Player.OperationCallback op;
+    private static final FirebaseDatabase database = getInstance();
+    private static final DatabaseReference songlistsRef = database.getReference("songlists");
 
     Playlist() {}
 
@@ -125,10 +130,13 @@ public class Playlist extends SongList {
         }
     }
 
-    public List<Song> reorder(int fromIndex, int toIndex){
-        Song toMove = songs.remove(fromIndex);
-        songs.add(toIndex, toMove);
-        return songs;
+    public void reorder(int fromIndex, int toIndex){
+        Song from = songs.get(fromIndex);
+        Song to = songs.get(toIndex);
+        songs.set(fromIndex, to);
+        songs.set(toIndex, from);
+        Global.party.setPlaylist(this);
+        songlistsRef.child(Party.playlist_id).setValue(this);
     }
 
     public ListIterator<Song> listIterator(){
