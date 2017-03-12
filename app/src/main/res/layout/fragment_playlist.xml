@@ -22,33 +22,34 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
-        android:layout_above="@+id/playPause"
+        android:layout_above="@+id/playButtons"
         android:background="@color/colorPrimaryDark"
         android:id="@+id/playlist"/>
 
-    <com.example.brianchan.ripple_android.BtnFonts
-        android:id="@+id/playPause"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/playButtons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="@string/play_icon"
-        android:onClick="toggle"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="47dp" />
+        android:layout_alignParentStart="true">
 
-    <com.example.brianchan.ripple_android.BtnFonts
-        android:id="@+id/skipButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/skip_icon"
-        android:onClick="skip"
-        android:layout_marginRight="50dp"
-        android:layout_marginEnd="47dp"
-        android:layout_below="@+id/playlist"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <com.example.brianchan.ripple_android.BtnFonts
+            android:id="@+id/playPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="toggle"
+            android:text="@string/play_icon" />
+
+        <com.example.brianchan.ripple_android.BtnFonts
+            android:id="@+id/skipButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="skip"
+            android:text="@string/skip_icon" />
+    </LinearLayout>
 
 </RelativeLayout>
