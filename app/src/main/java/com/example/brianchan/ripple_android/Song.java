@@ -128,24 +128,6 @@ public class Song {
 
                             updateFields();
 
-                            ListView playlistView = (ListView) Global.prootView.findViewById(R.id.playlist);
-                            List<Song> playlistSongs = Global.party.getPlaylist().songs;
-                            if (playlistSongs != null) {
-                                playlistView.setAdapter(new SongListItemAdapter(Global.pctx, R.layout.song_view, playlistSongs));
-                            }
-                            else {
-                                playlistView.setAdapter(new SongListItemAdapter(Global.pctx, R.layout.song_view, new LinkedList()));
-                            }
-
-                            ListView historyView = (ListView) Global.hrootView.findViewById(R.id.historyList);
-                            List<Song> historySongs = Global.party.getHistory().songs;
-                            if (historySongs != null) {
-                                historyView.setAdapter(new SongListItemAdapter(Global.hctx, R.layout.song_view, historySongs));
-                            }
-                            else {
-                                historyView.setAdapter(new SongListItemAdapter(Global.hctx, R.layout.song_view, new LinkedList()));
-                            }
-
                         } catch (Exception e) {
                             Log.e("error", "error parsing data");
                         }
@@ -211,10 +193,12 @@ public class Song {
         requests = Global.party.getRequests();
         playlist = Global.party.getPlaylist();
 
-        Toast.makeText(Global.rctx, title + " Accepted!", Toast.LENGTH_LONG).show();
+        if (playlist == null) {
+            playlist = new Playlist(Global.party);
+        }
 
         status = ACCEPTED;
-        playlist.enqueue(new Song(this.songId, this.requester, status));
+        playlist.enqueue(this);
         requests.pop();
 
         Global.party.setRequests(requests);
@@ -244,8 +228,6 @@ public class Song {
         requests = Global.party.getRequests();
         requests.pop();
         status = REJECTED;
-
-        Toast.makeText(Global.rctx, title + " Rejected.", Toast.LENGTH_LONG).show();
 
         Global.party.setRequests(requests);
 

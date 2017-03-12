@@ -10,7 +10,9 @@
     <TextView
         android:text="Current Playlist:"
         android:textSize="15sp"
+        android:textStyle="bold"
         android:id="@+id/section_label"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -29,14 +31,14 @@
         android:id="@+id/playPause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="33dp"
+        android:layout_marginBottom="26dp"
         android:text="Play/Pause"
         android:onClick="toggle"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/section_label"
-        android:layout_alignEnd="@+id/section_label"
-        android:layout_marginRight="17dp"
-        android:layout_marginEnd="17dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="47dp"
+        android:layout_marginStart="47dp" />
 
     <Button
         android:id="@+id/skipButton"

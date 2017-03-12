@@ -25,4 +25,7 @@ public class StartPartyActivity extends AppCompatActivity {
         Intent intent = new Intent(StartPartyActivity.this, PasscodeActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {}
 }

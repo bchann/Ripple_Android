@@ -25,4 +25,7 @@ public class PasscodeActivity extends AppCompatActivity {
     public void sendSMS(View view) {
         presenter.sendSMS(view);
     }
+
+    @Override
+    public void onBackPressed() {}
 }

@@ -37,7 +37,7 @@ public class HistoryListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_historylist, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_historylist, container, false);
         listView = (ListView) rootView.findViewById(R.id.historyList);
         ctx = getActivity();
 
@@ -50,13 +50,13 @@ public class HistoryListFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setHistory(dataSnapshot.getValue(History.class));
                 songList = Global.party.getHistory().songs;
-                if (songList != null) {
-                    for (Song song: songList){
-                        song.getData();
-                    }
+
+                if (songList == null) {
+                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
                 }
                 else {
-                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
+                    ListView playlistView = (ListView) rootView.findViewById(R.id.historyList);
+                    playlistView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
                 }
             }
 

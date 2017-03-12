@@ -39,4 +39,7 @@ public class AuthActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
         presenter.onActivityResult(requestCode, resultCode, intent);
     }
+
+    @Override
+    public void onBackPressed() {}
 }

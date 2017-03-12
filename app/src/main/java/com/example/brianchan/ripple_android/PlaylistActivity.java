@@ -1,5 +1,6 @@
 package com.example.brianchan.ripple_android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -126,5 +127,11 @@ public class PlaylistActivity extends AppCompatActivity {
     public void toggle(View view) {
         //Global.party.getPlaylist().enqueue(new Song("0VFXJrXtfuX2iqlnXpl4zD", Global.party, null));
         Global.party.getPlaylist().togglePlayPause();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, AuthActivity.class);
+        startActivity(intent);
     }
 }

@@ -8,12 +8,13 @@
         android:id="@+id/songRequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:textSize="25sp"
+        android:layout_marginTop="24dp"
+        android:textSize="30sp"
         android:maxLines="1"
-        android:text="Song Name" />
+        android:text="Song Name"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:id="@+id/albumArt"
@@ -21,48 +22,51 @@
         android:layout_height="200sp"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/songRequest"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/album_border"/>
 
     <TextView
         android:id="@+id/authorRequest"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="17dp"
         android:text="Author"
-        android:layout_below="@+id/albumArt"
         android:maxLines="1"
+        android:layout_below="@+id/albumArt"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/albumRequest"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:text="Album"
-        android:layout_below="@+id/authorRequest"
         android:maxLines="1"
+        android:layout_below="@+id/authorRequest"
         android:layout_centerHorizontal="true" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/rejectButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/albumRequest"
-        android:layout_toLeftOf="@+id/albumArt"
-        android:layout_toStartOf="@+id/albumArt"
         android:clickable="true"
         app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_delete" />
+        app:srcCompat="@android:drawable/ic_delete"
+        android:layout_below="@+id/albumRequest"
+        android:layout_toLeftOf="@+id/albumArt"
+        android:layout_toStartOf="@+id/albumArt" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/acceptButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/rejectButton"
-        android:layout_toEndOf="@+id/albumArt"
-        android:layout_toRightOf="@+id/albumArt"
         android:clickable="true"
         app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:layout_below="@+id/albumRequest"
+        android:layout_toRightOf="@+id/albumArt"
+        android:layout_toEndOf="@+id/albumArt" />
 
 </RelativeLayout>

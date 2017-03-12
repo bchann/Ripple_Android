@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,7 +45,7 @@ public class RequestsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_request, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_request, container, false);
         ctx = getActivity();
 
         songnameView = (TextView) rootView.findViewById(R.id.songRequest);
@@ -63,8 +64,9 @@ public class RequestsFragment extends Fragment {
             public void onClick(View view) {
                 requests = Global.party.getRequests();
                 if (!requests.isEmpty()) {
-                    Global.party.getRequests().peek().reject();
-                    //songlistsRef.child(Party.request_list_id).setValue(Global.party.getRequests());
+                    Song song = Global.party.getRequests().peek();
+                    song.accept();
+                    Toast.makeText(ctx, song.getTitle() + " Accepted!", Toast.LENGTH_SHORT).show();
                 }
                 updateFields();
             }
@@ -76,9 +78,9 @@ public class RequestsFragment extends Fragment {
             public void onClick(View view) {
                 requests = Global.party.getRequests();
                 if (!requests.isEmpty()) {
-                    Global.party.getRequests().peek().accept();
-                    //songlistsRef.child(Party.playlist_id).setValue(Global.party.getPlaylist());
-                    //songlistsRef.child(Party.request_list_id).setValue(Global.party.getRequests());
+                    Song song = Global.party.getRequests().peek();
+                    song.accept();
+                    Toast.makeText(ctx, song.getTitle() + " Rejected.", Toast.LENGTH_SHORT).show();
                 }
                 updateFields();
             }
@@ -88,14 +90,14 @@ public class RequestsFragment extends Fragment {
         songsRef.child(Party.request_list_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.err.println("hiiii");
                 Global.party.setRequests(dataSnapshot.getValue(Requests.class));
                 requests = Global.party.getRequests();
                 songList = Global.party.getRequests().songs;
                 if (songList != null) {
-                    for (Song song: songList){
+                    /*for (Song song: songList){
                         song.getData();
-                    }
+                    }*/
+                    songList.get(0).getData();
                 }
                 updateFields();
             }

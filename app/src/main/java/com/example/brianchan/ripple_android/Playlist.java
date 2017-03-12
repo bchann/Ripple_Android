@@ -22,7 +22,6 @@ import static com.example.brianchan.ripple_android.Global.player;
 public class Playlist extends SongList {
     //private static Party party;
 
-
     private static Player.OperationCallback op;
 
     Playlist() {}

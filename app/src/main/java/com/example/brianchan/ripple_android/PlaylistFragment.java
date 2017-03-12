@@ -28,6 +28,7 @@ public class PlaylistFragment extends Fragment {
     private ListView listView;
     private Context ctx;
     private final FirebaseDatabase database = getInstance();
+    private Playlist playlist1 = new Playlist(Global.party);
 
     public PlaylistFragment() {}
 
@@ -37,7 +38,7 @@ public class PlaylistFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_playlist, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_playlist, container, false);
         ctx = getActivity();
         listView = (ListView) rootView.findViewById(R.id.playlist);
 
@@ -50,14 +51,16 @@ public class PlaylistFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
-                songList = Global.party.getPlaylist().songs;
-                if (songList != null) {
-                    for (Song song: songList){
-                        song.getData();
+                playlist1 = Global.party.getPlaylist();
+                if (playlist1 != null) {
+                    songList = playlist1.songs;
+
+                    if (songList == null) {
+                        listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
+                    } else {
+                        ListView playlistView = (ListView) rootView.findViewById(R.id.playlist);
+                        playlistView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
                     }
-                }
-                else {
-                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
                 }
             }
 
