@@ -8,9 +8,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/rsz_test4"
     tools:context="com.example.brianchan.ripple_android.AuthActivity">
 
-    <Button
+
+    <com.example.brianchan.ripple_android.BtnFonts
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -18,7 +20,7 @@
         android:layout_marginBottom="52dp"
         android:background="@drawable/custom_button"
         android:onClick="connect"
-        android:text="Connect with Spotify"
+        android:text="@string/spotify_icon"
         android:textColor="@drawable/button_text_color" />
 
     <com.example.brianchan.ripple_android.RippleFont
