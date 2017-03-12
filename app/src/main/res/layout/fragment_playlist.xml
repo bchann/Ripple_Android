@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="toggle"
+            android:background="@drawable/custom_button"
             android:text="@string/play_icon" />
 
         <com.example.brianchan.ripple_android.BtnFonts
@@ -48,6 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/custom_button"
             android:onClick="skip"
             android:text="@string/skip_icon" />
     </LinearLayout>
