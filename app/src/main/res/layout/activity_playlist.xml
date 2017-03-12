@@ -44,7 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1sp"
-            android:background="@color/colorPrimaryDark" />
+            android:background="@color/colorPrimaryDark"
+            android:layout_alignParentBottom= "true"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/container"
