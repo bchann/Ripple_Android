@@ -251,9 +251,6 @@ public class Song {
         playlist.dequeue();
         status = FINISHED_PLAYING;
 
-        Global.party.setHistory(history);
-        Global.party.setPlaylist(playlist);
-
         database.getReference("notifications").child(requester).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -277,6 +274,9 @@ public class Song {
         else {
             songlistsRef.child(Party.playlist_id).setValue(playlist);
         }
+
+        Global.party.setHistory(history);
+        Global.party.setPlaylist(playlist);
     }
 
     public void markPlaying() {
