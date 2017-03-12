@@ -98,8 +98,12 @@ public class SongListItemAdapter extends ArrayAdapter {
             moveDown.setText("");
         }
 
-        if (position == Global.party.getPlaylist().songs.size() - 1) {
+        if (Global.party.getPlaylist().songs != null && position == Global.party.getPlaylist().songs.size() - 1) {
             moveDown.setText("");
+        }
+
+        if (position == 2) {
+            moveUp.setText("");
         }
 
         return convertView;
