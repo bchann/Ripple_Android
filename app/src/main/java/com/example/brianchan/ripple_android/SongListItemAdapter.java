@@ -45,18 +45,19 @@ public class SongListItemAdapter extends ArrayAdapter {
         /* Extract the city's object to show */
         Song songListItem = (Song) getItem(position);
 
-        //songListItem.getData();
-
         /* Take the TextView from layout and set the city's name */
         TextView txtName = (TextView) convertView.findViewById(R.id.songName);
         txtName.setText(songListItem.getTitle());
+        txtName.setSelected(true);
 
         /* Take the TextView from layout and set the city's wiki link */
         TextView txtAuthor = (TextView) convertView.findViewById(R.id.authorName);
         txtAuthor.setText(songListItem.getArtist());
+        txtAuthor.setSelected(true);
 
         TextView txtAlbum = (TextView) convertView.findViewById(R.id.albumName);
         txtAlbum.setText(songListItem.getAlbumTitle());
+        txtAlbum.setSelected(true);
 
         new DownloadImageTask((ImageView) convertView.findViewById(R.id.ImageCity))
                 .execute(songListItem.getMedImageURI());
@@ -64,7 +65,6 @@ public class SongListItemAdapter extends ArrayAdapter {
         TextView moveUp = (TextView) convertView.findViewById(R.id.moveUp);
         TextView moveDown = (TextView) convertView.findViewById(R.id.moveDown);
 
-        //TODO: ADD REORDER FUNCTIONALITY
         moveUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

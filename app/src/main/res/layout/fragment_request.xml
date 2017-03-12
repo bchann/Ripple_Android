@@ -14,7 +14,14 @@
         android:text="Song Name"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"/>
 
     <ImageView
         android:id="@+id/albumArt"
@@ -34,7 +41,14 @@
         android:text="Author"
         android:maxLines="1"
         android:layout_below="@+id/albumArt"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"/>
 
     <TextView
         android:id="@+id/albumRequest"
@@ -45,7 +59,14 @@
         android:text="Album"
         android:maxLines="1"
         android:layout_below="@+id/authorRequest"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/rejectButton"
