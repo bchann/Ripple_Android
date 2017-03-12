@@ -50,14 +50,15 @@ public class PlaylistFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setPlaylist(dataSnapshot.getValue(Playlist.class));
-                songList = Global.party.getPlaylist().songs;
-                if (songList != null) {
-                    for (Song song: songList){
-                        song.getData();
+                if ((Global.party != null && Global.party.getPlaylist() != null)){
+                    songList = Global.party.getPlaylist().songs;
+                    if (songList != null) {
+                        for (Song song : songList) {
+                            song.getData();
+                        }
+                    } else {
+                        listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
                     }
-                }
-                else {
-                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
                 }
             }
 

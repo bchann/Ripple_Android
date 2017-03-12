@@ -2,6 +2,8 @@ package com.example.brianchan.ripple_android;
 
 import android.view.View;
 
+import javax.microedition.khronos.opengles.GL;
+
 /**
  * Created by Parikshit on 3/5/17.
  */
@@ -13,7 +15,7 @@ public class PlaylistPresenter {
 
     public PlaylistPresenter (PlaylistActivity activity){
         this.activity = activity;
-        this.play = Global.party.getPlaylist();
+        //this.play = Global.party.getPlaylist();
     }
 
     public void onCreate(){
@@ -22,7 +24,13 @@ public class PlaylistPresenter {
 
 
     public void toggle(View view){
+        play = Global.party.getPlaylist();
         play.togglePlayPause();
+    }
+
+    public void skip(View view){
+        play = Global.party.getPlaylist();
+        play.skip();
     }
 
 

@@ -1,11 +1,13 @@
 package com.example.brianchan.ripple_android;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,11 +41,14 @@ public class PlaylistActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
     PlaylistPresenter presenter;
+    Context ctx;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
+        ctx = this;
 
         // navbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -102,6 +107,7 @@ public class PlaylistActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
         presenter = new PlaylistPresenter(this);
+        Log.d("Debug", "we got here");
     }
 
 
@@ -130,4 +136,7 @@ public class PlaylistActivity extends AppCompatActivity {
     public void toggle(View view) {
         presenter.toggle(view);
     }
+
+    public void skip(View view) { presenter.skip(view); }
+
 }

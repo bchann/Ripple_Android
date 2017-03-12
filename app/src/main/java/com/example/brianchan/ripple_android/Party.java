@@ -1,5 +1,7 @@
 package com.example.brianchan.ripple_android;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -43,6 +45,7 @@ public class Party {
         history = new History(this);
         requests = new Requests(this);
         playlist = new Playlist(this);
+        Log.d("Debug", "Created Playlist");
 
         passcode = 1234; //Temp passcode
 

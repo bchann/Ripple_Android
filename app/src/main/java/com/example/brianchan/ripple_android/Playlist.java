@@ -58,55 +58,67 @@ public class Playlist extends SongList {
         songs.remove(song);
     }
 
-    public void togglePlayPause(){
-        if(player.getPlaybackState().isPlaying){
-            Log.d("debug", "pausing");
-            player.pause(op);
-            songs.get(0).markPaused();
-            nextSongThread.onPause();
-        }
-        else{
-            if(firstTime) {
-                playNextSong();
-            }
-            else if(player.getPlaybackState().positionMs < player.getMetadata().currentTrack.durationMs){
-                player.resume(op);
-                songs.get(0).markPlaying();
-                nextSongThread.onResume();
+    public void togglePlayPause() {
+        if (!songs.isEmpty()) {
+            if (player.getPlaybackState().isPlaying) {
+                Log.d("debug", "pausing");
+                player.pause(op);
+                songs.get(0).markPaused();
+                nextSongThread.onPause();
+            } else {
+                if (firstTime) {
+                    playNextSong();
+                } else if (player.getPlaybackState().positionMs < player.getMetadata().currentTrack.durationMs) {
+                    player.resume(op);
+                    songs.get(0).markPlaying();
+                    nextSongThread.onResume();
+                }
             }
         }
     }
+
 
     //plays the next song on our playlist
     public void playNextSong() {
         Log.d("Error", "blah");
-        Song currSong = songs.get(0);
-
-
-        if(firstTime) {
-            System.err.println("DEBUG: " + this);
-            nextSongThread = new PlaylistThread(currSong.getDuration(), this);
-            player.playUri(op, currSong.getUri(), 0, 0);
-            nextSongThread.start();
-            currSong.markPlaying();
-            firstTime = false;
-        }
-        else{
-            currSong.markFinishedPlaying();
-            remove(currSong);
-            if(songs.size() != 0) {
-                Song nextSong =  songs.get(0);
-                nextSongThread = new PlaylistThread(nextSong.getDuration(), this);
-                player.playUri(op, nextSong.getUri(), 0, 0);
+        if(!songs.isEmpty()){
+            Song currSong = songs.get(0);
+            if(firstTime) {
+                System.err.println("DEBUG: " + this);
+                nextSongThread = new PlaylistThread(currSong.getDuration(), this);
+                player.playUri(op, currSong.getUri(), 0, 0);
                 nextSongThread.start();
-                nextSong.markPlaying();
+                currSong.markPlaying();
+                firstTime = false;
+            }
+            else{
+                currSong.markFinishedPlaying();
+                //remove(currSong);
+                if(!songs.isEmpty()) {
+                    Song nextSong =  songs.get(0);
+                    nextSongThread = new PlaylistThread(nextSong.getDuration(), this);
+                    player.playUri(op, nextSong.getUri(), 0, 0);
+                    nextSongThread.start();
+                    nextSong.markPlaying();
+                }
             }
         }
+
     }
 
     //skips to next song
     public void skip(){
-        nextSongThread.interrupt();
+        Log.d("Debug", "" + songs.size());
+        //Log.d("Debug", "" + Global.party.getPlaylist().songs.size());
+        if(songs.size() > 1) {
+            nextSongThread.interrupt();
+        }
+        else if(songs.size() == 1){
+            songs.get(0).markFinishedPlaying();
+            //remove(songs.get(0));
+            player.pause(op);
+            nextSongThread = null;
+        }
     }
 
     public List<Song> reorder(int fromIndex, int toIndex){
@@ -116,8 +128,11 @@ public class Playlist extends SongList {
     }
 
     public ListIterator<Song> listIterator(){
+        songs = Global.party.getPlaylist().songs;
         return songs.listIterator();
     }
+
+    public List<Song> getSongs(){ return songs;}
 
     public Song getCurrSong(){ return songs.get(0);}
 }

@@ -296,7 +296,12 @@ public class Song {
         });
 
         songlistsRef.child(Party.history_id).setValue(history);
-        songlistsRef.child(Party.playlist_id).setValue(playlist);
+        if(party == null) {
+            songlistsRef.child(Party.playlist_id).setValue(new LinkedList<Song>());
+        }
+        else {
+            songlistsRef.child(Party.playlist_id).setValue(playlist);
+        }
     }
 
     public void markPlaying() {
