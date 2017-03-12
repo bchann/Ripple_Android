@@ -88,7 +88,6 @@ public class Playlist extends SongList {
 
     //plays the next song on our playlist
     public void playNextSong() {
-
         if(!songs.isEmpty()){
             Song currSong = songs.get(0);
             System.out.println("Debug: The current song is: " +  songs.get(0).getTitle());

@@ -50,10 +50,10 @@ public class PlaylistFragment extends Fragment {
                 songList = Global.party.getPlaylist().songs;
 
                 if (songList == null) {
-                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
+                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList(), true));
                 } else {
                     ListView playlistView = (ListView) rootView.findViewById(R.id.playlist);
-                    playlistView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
+                    playlistView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList, true));
                 }
             }
 

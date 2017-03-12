@@ -127,6 +127,7 @@ public class Party {
     }
 
     public void setRequests(Requests requests) {
+        //TODO: ADD FIREBASE CALLS AND REMOVE ALL OTHER PUSHES
         this.requests = requests;
     }
 

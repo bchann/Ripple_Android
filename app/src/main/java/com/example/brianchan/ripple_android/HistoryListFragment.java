@@ -49,11 +49,11 @@ public class HistoryListFragment extends Fragment {
                 songList = Global.party.getHistory().songs;
 
                 if (songList == null) {
-                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList()));
+                    listView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, new LinkedList(), false));
                 }
                 else {
                     ListView playlistView = (ListView) rootView.findViewById(R.id.historyList);
-                    playlistView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList));
+                    playlistView.setAdapter(new SongListItemAdapter(ctx, R.layout.song_view, songList, false));
                 }
             }
 

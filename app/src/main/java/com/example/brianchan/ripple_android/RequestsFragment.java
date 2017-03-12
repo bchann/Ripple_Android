@@ -55,6 +55,10 @@ public class RequestsFragment extends Fragment {
         albumView = (TextView) rootView.findViewById(R.id.albumRequest);
         image = (ImageView) rootView.findViewById(R.id.albumArt);
 
+        songnameView.setSelected(true);
+        authorView.setSelected(true);
+        albumView.setSelected(true);
+
         //updateFields();
 
         FloatingActionButton reject = (FloatingActionButton) rootView.findViewById(R.id.rejectButton);

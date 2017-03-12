@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="50sp">
+    android:layout_height="80sp">
 
     <ImageView
         android:id="@+id/ImageCity"
@@ -24,21 +24,36 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:maxLines="1"/>
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollHorizontally="true"/>
 
         <TextView
             android:id="@+id/authorName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:maxLines="1"/>
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollHorizontally="true"/>
 
         <TextView
             android:id="@+id/albumName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:maxLines="1"/>
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit ="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollHorizontally="true"/>
     </LinearLayout>
 
     <LinearLayout
