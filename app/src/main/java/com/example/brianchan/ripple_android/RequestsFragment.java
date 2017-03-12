@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +29,7 @@ import static com.google.firebase.database.FirebaseDatabase.getInstance;
  */
 
 public class RequestsFragment extends Fragment {
-    TextView songnameView, authorView, albumView;
+    TextView songnameView, authorView;
     ImageView image;
     private Requests requests = new Requests(Global.party);
     private Context ctx;
@@ -52,16 +53,14 @@ public class RequestsFragment extends Fragment {
 
         songnameView = (TextView) rootView.findViewById(R.id.songRequest);
         authorView = (TextView) rootView.findViewById(R.id.authorRequest);
-        albumView = (TextView) rootView.findViewById(R.id.albumRequest);
         image = (ImageView) rootView.findViewById(R.id.albumArt);
 
         songnameView.setSelected(true);
         authorView.setSelected(true);
-        albumView.setSelected(true);
 
         //updateFields();
 
-        FloatingActionButton reject = (FloatingActionButton) rootView.findViewById(R.id.rejectButton);
+        Button reject = (Button) rootView.findViewById(R.id.rejectButton);
         reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +74,7 @@ public class RequestsFragment extends Fragment {
             }
         });
 
-        FloatingActionButton accept = (FloatingActionButton) rootView.findViewById(R.id.acceptButton);
+        Button accept = (Button) rootView.findViewById(R.id.acceptButton);
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,14 +117,12 @@ public class RequestsFragment extends Fragment {
         if (requests.isEmpty()) {
             songnameView.setText("No More Requests :(");
             authorView.setText("");
-            albumView.setText("");
             image.setImageResource(android.R.color.transparent);
         }
         else {
             Song topRequest = requests.peek();
             songnameView.setText(topRequest.getTitle());
-            authorView.setText(topRequest.getArtist());
-            albumView.setText(topRequest.getAlbumTitle());
+            authorView.setText(topRequest.getArtist() + " \u2022 " + topRequest.getAlbumTitle());
             new DownloadImageTask((ImageView) view.findViewById(R.id.albumArt))
                     .execute(topRequest.getMedImageURI());
         }

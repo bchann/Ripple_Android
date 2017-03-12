@@ -53,12 +53,8 @@ public class SongListItemAdapter extends ArrayAdapter {
 
         /* Take the TextView from layout and set the city's wiki link */
         TextView txtAuthor = (TextView) convertView.findViewById(R.id.authorName);
-        txtAuthor.setText(songListItem.getArtist());
+        txtAuthor.setText(songListItem.getArtist() + " \u2022 " + songListItem.getAlbumTitle());
         txtAuthor.setSelected(true);
-
-        TextView txtAlbum = (TextView) convertView.findViewById(R.id.albumName);
-        txtAlbum.setText(songListItem.getAlbumTitle());
-        txtAlbum.setSelected(true);
 
         new DownloadImageTask((ImageView) convertView.findViewById(R.id.ImageCity))
                 .execute(songListItem.getMedImageURI());
@@ -70,7 +66,6 @@ public class SongListItemAdapter extends ArrayAdapter {
             convertView.setBackgroundResource(R.drawable.album_border);
             txtName.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
             txtAuthor.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
-            txtAlbum.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
         }
 
         if (position > 1) {

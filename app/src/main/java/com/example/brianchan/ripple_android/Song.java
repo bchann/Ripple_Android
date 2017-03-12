@@ -144,18 +144,15 @@ public class Song {
         requests = Global.party.getRequests();
         TextView songnameView = (TextView) Global.rrootView.findViewById(R.id.songRequest);
         TextView authorView = (TextView) Global.rrootView.findViewById(R.id.authorRequest);
-        TextView albumView = (TextView) Global.rrootView.findViewById(R.id.albumRequest);
 
         if (requests.isEmpty()) {
             songnameView.setText("No More Requests :(");
             authorView.setText("");
-            albumView.setText("");
         }
         else {
             Song topRequest = requests.peek();
             songnameView.setText(topRequest.getTitle());
-            authorView.setText(topRequest.getArtist());
-            albumView.setText(topRequest.getAlbumTitle());
+            authorView.setText(topRequest.getArtist() + " \u2022 " + topRequest.getAlbumTitle());
             new DownloadImageTask((ImageView) Global.rrootView.findViewById(R.id.albumArt))
                     .execute(topRequest.getMedImageURI());
         }

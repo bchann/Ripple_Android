@@ -55,7 +55,6 @@ public class PlaylistActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //TODO: ADD LISTENERS FOR 3 SONG LISTS
         DatabaseReference songsRef = database.getReference("songlists");
         //playlist
         /*songsRef.child(Party.playlist_id).addListenerForSingleValueEvent(new ValueEventListener() {

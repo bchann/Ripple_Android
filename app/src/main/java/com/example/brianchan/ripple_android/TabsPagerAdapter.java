@@ -27,11 +27,13 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
+
         if (position == 0) {
-            return PlaylistFragment.newInstance();
-        }
-        if (position == 1) {
             return RequestsFragment.newInstance();
+        }
+
+        if (position == 1) {
+            return PlaylistFragment.newInstance();
         }
 
         return HistoryListFragment.newInstance();
@@ -47,9 +49,9 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Playlist";
-            case 1:
                 return "Requests";
+            case 1:
+                return "Playlist";
             case 2:
                 return "History";
         }

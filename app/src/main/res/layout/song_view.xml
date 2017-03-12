@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="80sp">
+    android:layout_height="60sp">
 
     <ImageView
         android:id="@+id/ImageCity"
-        android:layout_width="80sp"
-        android:layout_height="80sp" />
+        android:layout_width="60sp"
+        android:layout_height="60sp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:paddingLeft="90sp"
+        android:paddingLeft="70sp"
         android:paddingRight="40sp"
         android:id="@+id/songText"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:id="@+id/songName"
+            android:textStyle="bold"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -33,18 +34,6 @@
 
         <TextView
             android:id="@+id/authorName"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit ="marquee_forever"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:scrollHorizontally="true"/>
-
-        <TextView
-            android:id="@+id/albumName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -67,7 +56,7 @@
         <com.example.brianchan.ripple_android.TextFonts
             android:id="@+id/moveUp"
             android:layout_width="match_parent"
-            android:layout_height="39sp"
+            android:layout_height="29sp"
             android:layout_marginBottom="2sp"
             android:layout_centerVertical="true"
             android:clickable="true"
@@ -78,7 +67,7 @@
         <com.example.brianchan.ripple_android.TextFonts
             android:id="@+id/moveDown"
             android:layout_width="match_parent"
-            android:layout_height="39sp"
+            android:layout_height="29sp"
             android:layout_centerVertical="true"
             android:clickable="true"
             android:gravity="center"
