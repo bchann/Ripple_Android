@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import javax.microedition.khronos.opengles.GL;
-
 /**
  * Created by Brian Chan on 2/27/2017.
  */
@@ -21,7 +19,7 @@ public class PasscodeActivity extends AppCompatActivity {
         presenter = new PasscodePresenter(this);
 
         TextView txt = (TextView) findViewById(R.id.passcodeText);
-        txt.setText("4321");
+        txt.setText("5963");
     }
 
     public void enterParty(View view) {

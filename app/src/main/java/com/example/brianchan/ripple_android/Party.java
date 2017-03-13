@@ -19,7 +19,7 @@ public class Party {
     public static String party_id;
     public static String history_id, request_list_id, playlist_id;
     public static String user_list_id;
-    public static int passcode = 4321;
+    public static int passcode = 5963;
     public static String spotifyAuth = "tempSpotifyAuthKey";
 
     private Requests requests;
@@ -35,7 +35,7 @@ public class Party {
         //Room references for the different database containers
         DatabaseReference partyRef = database.getReference("parties");
         //party_id = partyRef.push().getKey();
-        party_id = "4321";
+        party_id = "5963";
 
         DatabaseReference roomRef = partyRef.child(party_id);
         DatabaseReference songsRef = database.getReference("songlists");
@@ -47,7 +47,7 @@ public class Party {
         playlist = new Playlist(this);
         Log.d("Debug", "Created Playlist");
 
-        passcode = 4321; //Temp passcode
+        passcode = 5963; //Temp passcode
 
         history_id = songsRef.push().getKey();
         //songsRef.child(history_id).child("songs").setValue(history);
