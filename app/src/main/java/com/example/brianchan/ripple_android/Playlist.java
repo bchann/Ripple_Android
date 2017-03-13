@@ -58,9 +58,8 @@ public class Playlist extends SongList {
 
     public Song dequeue() {
         System.out.println("DEBUG: The song that dequeued was: " + songs.get(0).getTitle());
-        songs.remove(0);
         System.out.println("DEBUG: The song that's first is: " + songs.get(0).getTitle());
-        return songs.get(0);
+        return songs.remove(0);
     }
 
     private void remove(Song song) {

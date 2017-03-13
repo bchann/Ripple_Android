@@ -21,7 +21,7 @@
         android:layout_above="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="14dp" />
+        android:layout_marginBottom="7dp" />
 
     <Button
         android:text="@string/enter_party_text"
@@ -56,12 +56,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
+        android:gravity="center_horizontal"
         android:layout_above="@+id/passcodeText"
-        android:layout_alignRight="@+id/passcodeText"
-        android:layout_alignEnd="@+id/passcodeText"
         android:layout_centerHorizontal="true"
-        android:layout_marginRight="13dp"
-        android:layout_marginEnd="13dp" />
+        android:layout_marginBottom="7dp" />
 
     <TextView
         android:text="1234"
@@ -73,6 +71,5 @@
         android:id="@+id/passcodeText"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
-        <!--android:background="@drawable/passcode_back"/>-->
 
 </RelativeLayout>

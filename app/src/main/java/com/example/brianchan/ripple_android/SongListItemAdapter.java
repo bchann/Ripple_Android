@@ -56,7 +56,7 @@ public class SongListItemAdapter extends ArrayAdapter {
         txtAuthor.setText(songListItem.getArtist() + " \u2022 " + songListItem.getAlbumTitle());
         txtAuthor.setSelected(true);
 
-        new DownloadImageTask((ImageView) convertView.findViewById(R.id.ImageCity))
+        new DownloadImageTask((ImageView) convertView.findViewById(R.id.songViewAlbum))
                 .execute(songListItem.getMedImageURI());
 
         TextView moveUp = (TextView) convertView.findViewById(R.id.moveUp);
@@ -64,11 +64,11 @@ public class SongListItemAdapter extends ArrayAdapter {
 
         if (position == 0 && isPlaylist) {
             convertView.setBackgroundResource(R.drawable.album_border);
-            txtName.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
-            txtAuthor.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
+            txtName.setTextColor(ContextCompat.getColor(context, R.color.white));
+            txtAuthor.setTextColor(ContextCompat.getColor(context, R.color.white));
         }
 
-        if (position > 1) {
+        if (position > 1 && Global.party.getPlaylist().songs != null) {
             moveUp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
