@@ -19,7 +19,7 @@
         android:onClick="connect"
         android:text="Connect with Spotify"
         android:textColor="@drawable/button_text_color"
-        android:id="@+id/btnFonts"
+        android:id="@+id/connect"
         android:textSize="17sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -34,7 +34,7 @@
         android:textSize="70sp"
         android:gravity="center"
         android:id="@+id/logo"
-        android:layout_above="@+id/btnFonts"
+        android:layout_above="@+id/connect"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
