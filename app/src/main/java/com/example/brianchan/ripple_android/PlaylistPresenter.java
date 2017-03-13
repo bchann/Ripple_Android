@@ -2,8 +2,6 @@ package com.example.brianchan.ripple_android;
 
 import android.view.View;
 
-import javax.microedition.khronos.opengles.GL;
-
 /**
  * Created by Parikshit on 3/5/17.
  */

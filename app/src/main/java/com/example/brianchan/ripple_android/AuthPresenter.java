@@ -72,7 +72,7 @@ public class AuthPresenter {
                         //Redundant party check
                         final FirebaseDatabase database = getInstance();
                         DatabaseReference partyRef = database.getReference("parties");
-                        String party_id = "4321"; //TODO: IMPLEMENT LINKING SPOTIFY TO PARTYID
+                        String party_id = "5963"; //TODO: IMPLEMENT LINKING SPOTIFY TO PARTYID
 
                         partyRef.child(party_id).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override

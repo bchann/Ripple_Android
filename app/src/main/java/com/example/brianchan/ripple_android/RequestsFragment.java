@@ -2,8 +2,6 @@ package com.example.brianchan.ripple_android;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,8 +86,7 @@ public class RequestsFragment extends Fragment {
             }
         });
 
-        DatabaseReference songsRef = database.getReference("songlists");
-        songsRef.child(Party.request_list_id).addValueEventListener(new ValueEventListener() {
+        songlistsRef.child(Party.request_list_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Global.party.setRequests(dataSnapshot.getValue(Requests.class));
