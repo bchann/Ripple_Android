@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Brian Chan\.android\build-cache\b2eddc39972dc7e6bcebb5d0d24ff00a7f185e18\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="55220cc71bd23fff8fc339a67f55be3cfd11cdec">
+        <dex dex="C:\Users\Brian Chan\Downloads\ripple-android\app\build\intermediates\pre-dexed\debug\classes_033bbda0d8a0980d35bfe5a0e725d8b94b5369bc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Brian Chan\.android\build-cache\b2eddc39972dc7e6bcebb5d0d24ff00a7f185e18\output\jars\libs\jnihelpers-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b54aab38b4f87a6682331b511fec0db6b952bb7e">
+        <dex dex="C:\Users\Brian Chan\Downloads\ripple-android\app\build\intermediates\pre-dexed\debug\jnihelpers-1.0_e885e533e2455398a765fcefc933ae4be148b65b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Brian Chan\.android\build-cache\49c4e63bfb056301d12e8e2654ef22e349092551\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0e7c2daeb5c4e8a4b0874bd62367979bb1c0c82a">
+        <dex dex="C:\Users\Brian Chan\Downloads\ripple-android\app\build\intermediates\pre-dexed\debug\classes_ede38376dff149ef96672bd2b72db5518febd93a.jar" />
+    </item>
+
+</items>

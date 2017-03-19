@@ -25,7 +25,7 @@ public class PasscodePresenter {
     public void sendSMS(View view){
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
         sendIntent.setData(Uri.parse("sms:"));
-        sendIntent.putExtra("sms_body", "My Ripple FIREBASE passcode is " + Global.party.getPasscode() + " !");
+        sendIntent.putExtra("sms_body", "Hey! Join the party at http://abgripple.herokuapp.com/ with the passcode " + Global.party.getPasscode() + "!");
         activity.startActivity(sendIntent);
     }
 
