@@ -202,8 +202,9 @@ public class Song {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
                 List<Notification> lst = dataSnapshot.getValue(t);
-                lst.add(new Notification(artist, smImageURI, title,
-                        DateFormat.getDateTimeInstance().format(new Date()), ACCEPTED));
+                String time = DateFormat.getDateTimeInstance().format(new Date());
+                time = time.substring(time.indexOf(':') - 2, time.length() - 6) + time.substring(time.indexOf(':') + 6, time.length());
+                lst.add(new Notification(artist, smImageURI, title, time, ACCEPTED));
                 database.getReference("notifications").child(requester).setValue(lst);
             }
 
@@ -228,8 +229,9 @@ public class Song {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
                 List<Notification> lst = dataSnapshot.getValue(t);
-                lst.add(new Notification(artist, smImageURI, title,
-                        DateFormat.getDateTimeInstance().format(new Date()), REJECTED));
+                String time = DateFormat.getDateTimeInstance().format(new Date());
+                time = time.substring(time.indexOf(':') - 2, time.length() - 6) + time.substring(time.indexOf(':') + 6, time.length());
+                lst.add(new Notification(artist, smImageURI, title, time, REJECTED));
                 database.getReference("notifications").child(requester).setValue(lst);
             }
 
@@ -253,8 +255,9 @@ public class Song {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
                 List<Notification> lst = dataSnapshot.getValue(t);
-                lst.add(new Notification(artist, smImageURI, title,
-                        DateFormat.getDateTimeInstance().format(new Date()), FINISHED_PLAYING));
+                String time = DateFormat.getDateTimeInstance().format(new Date());
+                time = time.substring(time.indexOf(':') - 2, time.length() - 6) + time.substring(time.indexOf(':') + 6, time.length());
+                lst.add(new Notification(artist, smImageURI, title, time, FINISHED_PLAYING));
                 database.getReference("notifications").child(requester).setValue(lst);
             }
 
@@ -286,8 +289,9 @@ public class Song {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
                 List<Notification> lst = dataSnapshot.getValue(t);
-                lst.add(new Notification(artist, smImageURI, title,
-                        DateFormat.getDateTimeInstance().format(new Date()), PLAYING));
+                String time = DateFormat.getDateTimeInstance().format(new Date());
+                time = time.substring(time.indexOf(':') - 2, time.length() - 6) + time.substring(time.indexOf(':') + 6, time.length());
+                lst.add(new Notification(artist, smImageURI, title, time, PLAYING));
                 database.getReference("notifications").child(requester).setValue(lst);
             }
 
@@ -311,8 +315,9 @@ public class Song {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<List<Notification>> t = new GenericTypeIndicator<List<Notification>>() {};
                 List<Notification> lst = dataSnapshot.getValue(t);
-                lst.add(new Notification(artist, smImageURI, title,
-                        DateFormat.getDateTimeInstance().format(new Date()), PAUSED));
+                String time = DateFormat.getDateTimeInstance().format(new Date());
+                time = time.substring(time.indexOf(':') - 2, time.length() - 6) + time.substring(time.indexOf(':') + 6, time.length());
+                lst.add(new Notification(artist, smImageURI, title, time, PAUSED));
                 database.getReference("notifications").child(requester).setValue(lst);
             }
 

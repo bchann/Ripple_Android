@@ -11,7 +11,7 @@ public class PlaylistPresenter {
 
     PlaylistActivity activity;
     Playlist play;
-    boolean paused = true;
+    boolean paused = false;
 
     public PlaylistPresenter (PlaylistActivity activity){
         this.activity = activity;
