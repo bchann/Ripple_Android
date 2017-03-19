@@ -20,6 +20,15 @@
         <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_2110a9415ae11231749739ac7ba9df50ca1dc4a9.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7aa217d6a21a53bdbf82217fe53f28a97c654385">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_8f1a5d44f6c2426c77189302731dceff43abcd65\classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="C:\Users\alto1\.android\build-cache\e76d435ec59770fb053d540f205fafbda49fe354\output\jars\classes.jar"
         jumboMode="false"
@@ -99,6 +108,15 @@
         revision="25.0.2"
         sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
         <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_ce0b128cf2dd2ede7aa5e9866ec0f9d0397b85c4.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b9357107b237140df57ccba3c8bb3644b6835e2d\classes.dex" />
     </item>
     <item
         is-multidex="false"

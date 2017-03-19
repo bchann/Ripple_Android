@@ -66,7 +66,7 @@ public class Playlist extends SongList {
     }
 
     public void togglePlayPause() {
-        if (!songs.isEmpty()) {
+        if (songs != null && !songs.isEmpty()) {
             if (player.getPlaybackState().isPlaying) {
                 player.pause(op);
                 songs.get(0).markPaused();
