@@ -3,30 +3,228 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\Brian Chan\.android\build-cache\b2eddc39972dc7e6bcebb5d0d24ff00a7f185e18\output\jars\classes.jar"
+        jar="C:\Users\alto1\.android\build-cache\235c81ccc23b0461e0f941e8388ebe5dda9bbdf2\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="55220cc71bd23fff8fc339a67f55be3cfd11cdec">
-        <dex dex="C:\Users\Brian Chan\Downloads\ripple-android\app\build\intermediates\pre-dexed\debug\classes_033bbda0d8a0980d35bfe5a0e725d8b94b5369bc.jar" />
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_39c086dd06ec1a444fb26c565cbad364e3673c1b.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Brian Chan\.android\build-cache\b2eddc39972dc7e6bcebb5d0d24ff00a7f185e18\output\jars\libs\jnihelpers-1.0.jar"
+        jar="C:\Users\alto1\.android\build-cache\91a17638650a9b20293c45040914f6a667bc5db7\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bd75f9f0296fe220da6d0ad961831b04541c4452">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_2110a9415ae11231749739ac7ba9df50ca1dc4a9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\e76d435ec59770fb053d540f205fafbda49fe354\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_4f9c1778d8fda921669d432667b4e2c79e85d49e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\b832bee268cd5c64e766e1b3158aba1ba18900e4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d5cbbbfe040201c7569478b70a13b58fd11aab4">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_4c27f7145e61fe9c37aab21b6e02b4423255f4c2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\63378370fec415d192270b4f72403d6e47b4e690\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_b5eee352eff56fc6f25f49321d8dd529d027127f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\77766ac9f5f9431500021a7f3662f6e443ecec27\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="94fca868854457ede6df15c902938468c71d579e">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_76adedadccd86e8ad6430ca2ff01b1a770923959.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\4741e859bde679b444939d2465ca2b1dd38a0987\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1ac56e5801e986583cbe27f2cce57f626cc7ff93">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_4130922e2e1698e14763db923bb1a48d6019e93f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\973d9935ec974c394ad1a053b6e8c024dacbbd64\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_47f6e97a76a11f110ec2b4a4ffa1c64fe9bd3c9d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\235c81ccc23b0461e0f941e8388ebe5dda9bbdf2\output\jars\libs\jnihelpers-1.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="b54aab38b4f87a6682331b511fec0db6b952bb7e">
-        <dex dex="C:\Users\Brian Chan\Downloads\ripple-android\app\build\intermediates\pre-dexed\debug\jnihelpers-1.0_e885e533e2455398a765fcefc933ae4be148b65b.jar" />
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\jnihelpers-1.0_deca1c18565e442f9cdc8e73ea2f3cd28f1b9471.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Brian Chan\.android\build-cache\49c4e63bfb056301d12e8e2654ef22e349092551\output\jars\classes.jar"
+        jar="C:\Users\alto1\.android\build-cache\aef41769f70d16599b2630865602026837bafde4\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="0e7c2daeb5c4e8a4b0874bd62367979bb1c0c82a">
-        <dex dex="C:\Users\Brian Chan\Downloads\ripple-android\app\build\intermediates\pre-dexed\debug\classes_ede38376dff149ef96672bd2b72db5518febd93a.jar" />
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_10c0c174968f548af28ae3ffb7c67905bb70508f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\030ac050fb106dd9b9ca56dbc9c51a1d23de4429\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_ce0b128cf2dd2ede7aa5e9866ec0f9d0397b85c4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\2e38e1d8da56b718258793f83513aae4ca67e0ac\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_32c42bde3367ec8e9819f627d81213e031a99482.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\39db597ea153ef6af91bf3e27a7a1aa049fda06a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0e301f24b283f14b564f660c9abe863af6be5896">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_a3e0fa79854b8a909e739190f35629d54c588c8a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\c882f43f073e1797a1afac0a1d388074a46086f4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_c720e6db69ca3226a73e59766be7d7339ee592dc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\13d5bc9a5010891a8d7a385a342bc25cbb96bcce\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a61e7010aa7be5da53cd1bc5279630510c9a4912">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_095a176bbe2564b02a7df73580f2c52f6fc21769.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\594e220f52db7781529e100c683bbbeb7c835ad6\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ce9112e08a027c8620ae693983e38cdbb9f6371b">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_263c18405628592874d643e5961378bf136ea481.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\4b61993f363b119287a4370847ecceae917e337a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_6a32315bdba3deded891448349563b9fc1692d76.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\26afb37c793d8bfcce18b20bf4e9dea8ba550190\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3d6951cb416ebf8c66a32b9480808ca247b68344">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_163f09c5ada91356433c895c86540f929b02a101.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\32dd5cd6b4340dfd0c8a5713b11ec62a3ee61c9d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="152de8da301561dcb0946471697a420d8f7a68c5">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_b749aa277a394369154c814e6d82f1a9a5a27517.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\b994abaf42a833ed2a8b45ab87973b552883df20\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ea6a989b83d19b1b461281e0475a6cd6514897f8">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_d6d739cd957e6af65e3745b96230ec5cb06360db.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\a82ad6df4822d37ae167b1cbc2114197bd438ce5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_85c98d8aaebb0dd8a5af1b31d07d03b44e6066a7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.2.0\support-annotations-25.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\support-annotations-25.2.0_51514570be24d07775765cb36da8f6ba01b08597.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\2e80635cd3c4e8e39f9181cdd652b6086756d7df\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e51c2f662bb72419632af5192553c37e33890a99">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_0e1aec54e9d768bc2fa0145418e7bce237f738d6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\7677e57883db3a6bebc7e5b8228dd2df9b5a8d9a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_0425d6648acff0ed2eefe8b2c2b76d58ced2db0b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\alto1\.android\build-cache\6c120c96a28664778523215827339cc02a909638\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\alto1\Downloads\ripple-android\ripple-android\app\build\intermediates\pre-dexed\debug\classes_78d207e79dbe1e38f4c7232969f4d8c8e3dbd57c.jar" />
     </item>
 
 </items>

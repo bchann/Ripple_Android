@@ -1,9 +1,9 @@
 *.iml
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
-/build
-/captures
-.externalNativeBuild
+/ripple-android/.gradle
+/ripple-android/local.properties
+/ripple-android/.idea/workspace.xml
+/ripple-android/.idea/libraries
+/ripple-android/.DS_Store
+/ripple-android/build
+/ripple-android/captures
+/ripple-android/.externalNativeBuild
